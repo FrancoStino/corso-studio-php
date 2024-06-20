@@ -1,0 +1,25 @@
+name: hello-lando
+recipe: lamp
+config:
+  webroot: .
+  
+proxy:
+
+  mailhog:
+    - mailhog.hello-lando.lndo.site
+  phpmyadmin:
+    - phpmyadmin.hello-lando.lndo.site
+    
+    
+services:
+  mailhog:
+    type: mailhog:v1.0.1
+    portforward: false
+    hogfrom:
+      - appserver
+
+  phpmyadmin:
+    type: phpmyadmin
+    portforward: false
+    phpmyadminfrom:
+      - appserver
