@@ -1,26 +1,36 @@
 <?php
 
 /**
- * Questo script mostra come si possono utilizzare le stringhe in PHP.
+ * Esempi di Heredoc e Nowdoc in PHP.
  *
- * In PHP le stringhe possono essere indicate con le virgolette doppie (") o 
- * singole ('). All'interno delle stringhe si può utilizzare anche il 
- * carattere di escape per le virgolette doppie (\") e per le virgolette singole
- * (\').
+ * Heredoc e Nowdoc sono due tipi di costanti di stringa in PHP
+ * che consentono di definire stringhe di testo piuttosto lunghe
+ * e complesse.
  *
- * Per includere una variabile all'interno di una stringa si può utilizzare la 
- * sintassi con punti di sospensione (.).
+ * La differenza principale tra Heredoc e Nowdoc sta nel fatto che
+ * Heredoc permette all'interpolazione delle variabili all'interno
+ * della stringa, mentre Nowdoc non lo fa.
+ *
+ * @author Luca Perotti
  */
 
-// Definizione della variabile
-$nome = "Mario";
+$numero = 100;
 
-// Stampa la stringa con la variabile inclusa
-echo 'Ciao mi chiamo ' . $nome;
-echo "Ciao mi chiamo $nome";
+// Esempio di Heredoc
+$stringaHeredoc = <<<stringa
+Mostra il numero $numero
+Seconda Riga" tretre
+Terza riga' erter
+stringa;
 
-// Stampa la stringa con l'altro nome incluso
-echo 'L\'altro nome è ' . $nome;
+echo $stringaHeredoc;
 
-// Stampa la stringa con l'altro nome incluso e con l'uso di escape per le virgolette doppie
-echo "L'altro \"nome\" è $nome";
+// Esempio di Nowdoc
+$stringaNowdoc = <<<'stringa'
+Mostra il numero $numero
+Seconda Riga" tretre
+Terza riga' erter
+stringa;
+
+echo $stringaNowdoc;
+
