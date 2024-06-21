@@ -1,11 +1,20 @@
 <?php
 
-// Strutture di controllo (if)
+/**
+ * Esempio di come utilizzare le funzioni is_numeric(), is_float() e is_int()
+ * per verificare il tipo di dato.
+ */
 
-$meteoDomani = 'sole';
+$numero = 5.3;
 
-if ($meteoDomani == 'sole') {
-  echo 'Esco a fare una passeggiata';
-} else {
-  echo 'Resto a casa';
-}
+// Verifica se il valore è un numero (float o int).
+$test = is_numeric($numero);
+
+// Verifica se il valore è un float.
+$test = is_float($numero);
+
+// Verifica se il valore è un intero.
+$test = is_int($numero);
+
+// Stampa il risultato della verifica.
+var_dump($test);
