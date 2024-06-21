@@ -1,23 +1,26 @@
 <?php
 
 /**
- * Confronto tra due numeri float.
+ * Questo script mostra come si possono utilizzare le stringhe in PHP.
  *
- * La comparazione tra due numeri float può essere problematica
- * a causa della rappresentazione a virgola mobile.
- * In questo esempio viene utilizzato un valore di delta per
- * considerare due numeri uguali se la loro differenza assoluta è minore di tale valore.
+ * In PHP le stringhe possono essere indicate con le virgolette doppie (") o 
+ * singole ('). All'interno delle stringhe si può utilizzare anche il 
+ * carattere di escape per le virgolette doppie (\") e per le virgolette singole
+ * (\').
+ *
+ * Per includere una variabile all'interno di una stringa si può utilizzare la 
+ * sintassi con punti di sospensione (.).
  */
 
-$x = 0.1 + 0.2;  // 0.30000000000000004
-$y = 0.3;
+// Definizione della variabile
+$nome = "Mario";
 
-$delta = 0.0000001;  // valore di delta per la comparazione
+// Stampa la stringa con la variabile inclusa
+echo 'Ciao mi chiamo ' . $nome;
+echo "Ciao mi chiamo $nome";
 
-$diff = abs($x - $y);  // 0.00000000000000018
+// Stampa la stringa con l'altro nome incluso
+echo 'L\'altro nome è ' . $nome;
 
-if ($diff < $delta) {
-  echo "I due numeri sono uguali";
-} else {
-  echo "I due numeri sono diversi";
-}
+// Stampa la stringa con l'altro nome incluso e con l'uso di escape per le virgolette doppie
+echo "L'altro \"nome\" è $nome";
