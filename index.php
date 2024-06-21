@@ -1,10 +1,14 @@
 <?php
 
-function funzione1($valore)
-{
-  return $valore + 1.5;
-} 
+// Assegna il valore 2.5 alla variabile $a
+$a = 2.5;
 
-echo funzione1(0);
+// Verifica se la variabile $a è stata definita (in questo caso, sempre verrà restituito true)
+$test = isset($a);
 
-echo funzione1(3); 
+// Restituisce il tipo di dato della variabile $a
+$test = gettype($a);
+
+// Stampa a schermo il tipo di dato della variabile $a
+var_dump(gettype($a));
+
