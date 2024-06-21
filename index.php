@@ -1,47 +1,23 @@
 <?php
 
 /**
- * In questo script vengono illustrate alcune operazioni aritmetiche
- * in PHP.
+ * Confronto tra due numeri float.
  *
- * @author Matteo Tempestini <matteo.tempestini@gmail.com>
- * @version 1.0
- * @license MIT
+ * La comparazione tra due numeri float può essere problematica
+ * a causa della rappresentazione a virgola mobile.
+ * In questo esempio viene utilizzato un valore di delta per
+ * considerare due numeri uguali se la loro differenza assoluta è minore di tale valore.
  */
 
-// +, -, *, /, %, **
+$x = 0.1 + 0.2;  // 0.30000000000000004
+$y = 0.3;
 
-/**
- * Assegna al valore di $x il valore intero di '10'.
- *
- * @var int
- */
-$x = (int)'10';
+$delta = 0.0000001;  // valore di delta per la comparazione
 
-/**
- * Visualizza il valore di $x.
- * 
- * @see var_dump()
- */
-var_dump($x );
+$diff = abs($x - $y);  // 0.00000000000000018
 
-/**
- * Interrompe l'esecuzione dello script.
- *
- * @see exit()
- */
-exit;
-
-/**
- * Assegna al valore di $y il valore intero 5.
- *
- * @var int
- */
-$y = 5;
-
-/**
- * Visualizza il risultato della somma di $x e $y.
- *
- * @see echo
- */
-echo $x + $y;
+if ($diff < $delta) {
+  echo "I due numeri sono uguali";
+} else {
+  echo "I due numeri sono diversi";
+}
