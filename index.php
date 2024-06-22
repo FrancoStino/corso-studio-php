@@ -11,7 +11,6 @@
  * Heredoc permette all'interpolazione delle variabili all'interno
  * della stringa, mentre Nowdoc non lo fa.
  *
- * @author Luca Perotti
  */
 
 $numero = 100;
