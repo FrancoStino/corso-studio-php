@@ -15,7 +15,7 @@
 // Esempio di casting da stringa a intero
 $stringa = "22";
 
-$intero = (int)$stringa;
+$intero = (int) $stringa;
 
 var_dump($intero); // Output: int(22)
 
