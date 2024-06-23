@@ -1,42 +1,19 @@
 <?php
 
 /**
- * Aggiunge e rimuove elementi da un array.
+ * Array unpacking example.
  *
- * Esempi di utilizzo:
+ * The spread operator (...) can be used to insert the elements of an array
+ * into another array. This is known as array unpacking.
  *
- * $alunni = ['Anna'];
+ * In this example, we have an array $a with some elements. We create a new
+ * array $b by using the spread operator to insert the elements of $a into it,
+ * followed by two additional elements.
  *
- * $alunni[] = 'Massimo'; // Aggiunge 'Massimo' all'ultimo elemento dell'array
- * $alunni[] = 'Miriam'; // Aggiunge 'Miriam' all'ultimo elemento dell'array
- *
- * array_push($alunni, 'Giovanni', 'Maria'); // Aggiunge 'Giovanni' e 'Maria' all'ultimo elemento dell'array
- * array_unshift($alunni, 'Antonio'); // Aggiunge 'Antonio' all'inizio dell'array
- *
- * array_pop($alunni); // Rimuove l'ultimo elemento dell'array
- * array_shift($alunni); // Rimuove il primo elemento dell'array
- *
- * unset($alunni[1]); // Rimuove l'elemento all'indice 1 dell'array
- * $alunni = array_values($alunni); // Riordina gli indici dell'array
- *
- * array_splice($alunni, 2, 1, ['Luca', 'Marco']); // Rimpiazza l'elemento all'indice 2 con 'Luca' e 'Marco'
- *
- * var_dump($alunni); // Stampa l'array
+ * The resulting array $b will contain all the elements of $a, followed by 4 and 5.
  */
 
-$alunni = ['Anna'];
+$a = [1, 'due' => 2, 3];
+$b = [...$a, 4, 5];
 
-$alunni[] = 'Massimo';
-$alunni[] = 'Miriam';
-
-array_push($alunni, 'Giovanni', 'Maria');
-array_unshift($alunni, 'Antonio');
-
-array_pop($alunni);
-array_shift($alunni);
-
-unset($alunni[1]);
-$alunni = array_values($alunni);
-
-array_splice($alunni, 2, 1, ['Luca', 'Marco']);
-var_dump($alunni);
+var_dump($b);
