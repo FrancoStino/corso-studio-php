@@ -1,29 +1,13 @@
 <?php
 
 /**
- * Operatori aritmetici
- * 
- * Sono operatori che consentono di eseguire operazioni matematiche sui valori.
- * Esistono diversi tipi di operatori aritmetici:
- * 
- * + (somma)
- * - (sottrazione)
- * * (moltiplicazione)
- * / (divisione)
- * % (modulo)
- * 
- * Nel seguente esempio viene illustrato come utilizzare questi operatori.
+ * Questo script mostra un esempio di concatenazione di stringhe utilizzando l'operatore .=
+ * La variabile $stringa inizia con il testo "Corso " e poi viene concatenato il testo "PHP <br>"
+ * Infine viene stampato il risultato della concatenazione
+ *
+ * @var string $stringa la variabile che contiene il risultato della concatenazione
  */
 
-$numero = 10;
-
-$numeroStringa = "10";
-
-// applicazione dell'operatore unario -
-// che restituisce il valore negativo di un numero
-echo - $numero; // stampa -10
-
-// applicazione dell'operatore unario -
-// che restituisce il valore negativo di una stringa
-var_dump(-$numero); // stampa int(-10)
-
+$stringa = "Corso "; // inizializzo la variabile con il testo corrispondente
+$stringa .= "PHP <br>"; // utilizzo l'operatore .= per concatenare il testo "PHP <br>" alla variabile $stringa
+echo $stringa . "PHP <br> per principianti"; // stampo il risultato della concatenazione
