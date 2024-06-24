@@ -1,27 +1,29 @@
 <?php
 
 /**
- * Spaceship operator <=>
+ * In questo script vengono illustrati i operatori di incremento e decremento in PHP.
  *
- * Questo operatore viene utilizzato per confrontare due valori.
- * Restituisce:
- * - -1 se il primo valore è minore del secondo
- * - 0 se i due valori sono uguali
- * - 1 se il primo valore è maggiore del secondo
+ * L'operatore di incremento ++ incrementa il valore di una variabile di 1.
+ * L'operatore di decremento -- decrementa il valore di una variabile di 1.
+ *
+ * Ecco un esempio di come funzionano:
  */
 
-$a = 10;
-$b = 20;
+$a = 1;
 
-var_dump($a <=> $b); // Restituisce -1
+// L'operatore di incremento si può usare sia all'inizio che alla fine della variabile.
+// In questo caso, l'output sarà: 1 2 3 2
+echo $a++; // Incrementa $a di 1 e restituisce il valore originale di $a.
+echo $a; // Stampa il valore corrente di $a.
+echo $a++; // Incrementa $a di 1 e restituisce il valore corrente di $a.
+echo $a; // Stampa il valore corrente di $a.
+echo ++$a; // Incrementa $a di 1 e restituisce il valore nuovo di $a.
 
-$a = 10;
-$b = 10;
+$b = 1;
 
-var_dump($a <=> $b); // Restituisce 0
-
-$a = 20;
-$b = 10;
-
-var_dump($a <=> $b); // Restituisce 1
-
+// L'operatore di decremento si può usare sia all'inizio che alla fine della variabile.
+// In questo caso, l'output sarà: 1 0 -1
+echo $b--; // Decrementa $b di 1 e restituisce il valore originale di $b.
+echo $b; // Stampa il valore corrente di $b.
+echo $b--; // Decrementa $b di 1 e restituisce il valore corrente di $b.
+echo --$b; // Decrementa $b di 1 e restituisce il valore nuovo di $b.
