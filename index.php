@@ -1,29 +1,41 @@
 <?php
 
 /**
- * In questo script vengono illustrati i operatori di incremento e decremento in PHP.
- *
- * L'operatore di incremento ++ incrementa il valore di una variabile di 1.
- * L'operatore di decremento -- decrementa il valore di una variabile di 1.
- *
- * Ecco un esempio di come funzionano:
+ * Esercizio su operatore logici:
+ * - && (AND) verifica che entrambe le condizioni siano true
+ * - || (OR) verifica che almeno una delle condizioni sia true
+ * - xor (XOR) verifica che solo una delle due condizioni sia true
+ * - ! (NOT) nega la condizione
  */
 
-$a = 1;
+$sole = true;
 
-// L'operatore di incremento si può usare sia all'inizio che alla fine della variabile.
-// In questo caso, l'output sarà: 1 2 3 2
-echo $a++; // Incrementa $a di 1 e restituisce il valore originale di $a.
-echo $a; // Stampa il valore corrente di $a.
-echo $a++; // Incrementa $a di 1 e restituisce il valore corrente di $a.
-echo $a; // Stampa il valore corrente di $a.
-echo ++$a; // Incrementa $a di 1 e restituisce il valore nuovo di $a.
+$voglia = false;
 
-$b = 1;
+// Verifica che entrambe le condizioni siano true
+if ($sole && $voglia) {
+  echo 'Faremo la passeggiata';
+} else {
+  echo 'Non faremo la passeggiata';
+}
 
-// L'operatore di decremento si può usare sia all'inizio che alla fine della variabile.
-// In questo caso, l'output sarà: 1 0 -1
-echo $b--; // Decrementa $b di 1 e restituisce il valore originale di $b.
-echo $b; // Stampa il valore corrente di $b.
-echo $b--; // Decrementa $b di 1 e restituisce il valore corrente di $b.
-echo --$b; // Decrementa $b di 1 e restituisce il valore nuovo di $b.
+// Verifica che almeno una delle condizioni sia true
+if ($sole || $voglia) {
+  echo 'Possiamo andare in passeggiata';
+} else {
+  echo 'Non possiamo andare in passeggiata';
+}
+
+// Verifica che solo una delle due condizioni sia true
+if ($sole xor $voglia) {
+  echo 'Possiamo andare in passeggiata';
+} else {
+  echo 'Non possiamo andare in passeggiata';
+}
+
+// Nega la condizione
+if (!$sole) {
+  echo 'Non abbiamo sole';
+} else {
+  echo 'Abbiamo sole';
+}
