@@ -54,3 +54,18 @@ var_dump($a <> $e); // restituisce true poiché i valori sono diversi (10 e 12)
 var_dump($a != $e); // restituisce true poiché i valori sono diversi (10 e 12)
 
 echo '// -------------' . PHP_EOL;
+
+
+$suka = 10;
+$suka2 = $suka + 1;
+var_dump($suka <> $suka2); // restituisce true poiché i valori sono diversi (10 e 11)
+
+echo '// -------------' . PHP_EOL;
+
+$prova = 20;
+$prova2 = 20;
+$prova3 = '20';
+
+var_dump($prova <> $prova2); // restituisce false poiché i valori sono uguali
+
+var_dump($prova <> $prova3); // restituisce false poiché i valori sono uguali dopo una conversione del tipo stringa a intero
