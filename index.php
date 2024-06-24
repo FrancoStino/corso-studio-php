@@ -1,41 +1,26 @@
 <?php
 
 /**
- * Esercizio su operatore logici:
- * - && (AND) verifica che entrambe le condizioni siano true
- * - || (OR) verifica che almeno una delle condizioni sia true
- * - xor (XOR) verifica che solo una delle due condizioni sia true
- * - ! (NOT) nega la condizione
+ * Esempio di precedenza tra operatori e short-circuit evaluation.
+ *
+ * L'operatore '&&' viene valutato da sinistra a destra. Se l'operando
+ * a sinistra è falso, viene restituito subito falso, senza valutare l'operando
+ * a destra. Altrimenti, viene valutato l'operando a destra.
  */
 
-$sole = true;
+$testTrue = true;
+$testFalse = false;
 
-$voglia = false;
+var_dump($testTrue and $testFalse); // bool(false)
 
-// Verifica che entrambe le condizioni siano true
-if ($sole && $voglia) {
-  echo 'Faremo la passeggiata';
-} else {
-  echo 'Non faremo la passeggiata';
+/**
+ * Esempio di funzione che viene solamente eseguita se l'operando
+ * a sinistra è vero.
+ */
+function fn1()
+{
+  echo "Funzione " . __FUNCTION__ . " eseguita";
 }
 
-// Verifica che almeno una delle condizioni sia true
-if ($sole || $voglia) {
-  echo 'Possiamo andare in passeggiata';
-} else {
-  echo 'Non possiamo andare in passeggiata';
-}
-
-// Verifica che solo una delle due condizioni sia true
-if ($sole xor $voglia) {
-  echo 'Possiamo andare in passeggiata';
-} else {
-  echo 'Non possiamo andare in passeggiata';
-}
-
-// Nega la condizione
-if (!$sole) {
-  echo 'Non abbiamo sole';
-} else {
-  echo 'Abbiamo sole';
-}
+false && fn1(); // funzione non eseguita
+true && fn1(); // funzione eseguita
