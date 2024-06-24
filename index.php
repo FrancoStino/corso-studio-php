@@ -1,16 +1,45 @@
 <?php
 
-/**
- * Calcola il doppio di un valore.
- *
- * @param int $valore Il valore da doppiare.
- * @return int Il doppio del valore dato in input.
- */
-function informazioniCorso($valore){
+// Introduzione agli array superglobali: 043 capitolo 
 
-  return $valore * 2;
+// $GLOBALS
 
+$corso = 'PHP';
+
+function stampaCorso()
+{
+  global $corso;
+
+  echo $corso . '<br>';
+  echo $GLOBALS['corso'];
 }
 
-$valore = 1;
-echo informazioniCorso($valore);
+stampaCorso();
+
+// $_SERVER
+
+echo $_SERVER['PHP_SELF'];
+
+// $_GET
+
+echo $_GET['nome'];
+
+// $_POST
+
+echo $_POST['nome'];
+
+// $_FILES
+
+echo $_FILES['nome'];
+
+// $_REQUEST
+
+echo $_REQUEST['nome'];
+
+// $_SESSION
+
+echo $_SESSION['nome'];
+
+// $_COOKIE
+
+echo $_COOKIE['nome'];
