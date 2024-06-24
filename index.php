@@ -1,33 +1,36 @@
 <?php
+/**
+ * Questo script riceve i dati da un form inserito tramite metodo POST
+ * e li stampa sulla pagina.
+ * I dati vengono prima filtrati con la funzione htmlspecialchars()
+ * per prevenire attacchi di tipo XSS.
+ */
 
-// // Array superglobale GET
-// echo "Corso {$_GET['corso']} di realizzato da {$_GET['nome']}".PHP_EOL;
+// Array superglobale POST
 
+if (isset($_POST['corso']) && isset($_POST['nome'])) {
+  $corso = htmlspecialchars($_POST['corso']);
+  $nome = htmlspecialchars($_POST['nome']);
 
-// // Con extract
-
-// extract($_GET);
-
-// echo "Corso $corso di realizzato da $nome" . PHP_EOL;
-
-var_dump($_GET);
+  echo "Corso <strong>{$corso}</strong> di realizzato da <strong>{$nome}</strong>" . PHP_EOL;
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   
-  <title>Document</title>
+  <title>Esempio di form PHP</title>
 </head>
 <body>
-  <form action="index.php" method="get">
-
-    <label for="corso">Corso</label>
+  <form action="index.php" method="post" enctype="multipart/form-data">
+    <label for="corso">Corso:</label>
     <input type="text" name="corso" id="corso">
-    <label for="nome">Nome</label>
+    
+    <label for="nome">Nome:</label>
     <input type="text" name="nome" id="nome">
+    
     <input type="submit" value="Invia">
-
   </form>
 </body>
 </html>
