@@ -1,18 +1,29 @@
 <?php
 
 /**
- * In questo esempio viene mostrato come utilizzare i cookie per gestire le sessioni.
+ * Operatori aritmetici
  * 
- * La funzione session_start() viene utilizzata per avviare una sessione.
+ * Sono operatori che consentono di eseguire operazioni matematiche sui valori.
+ * Esistono diversi tipi di operatori aritmetici:
  * 
- * Successivamente viene impostato il valore della variabile di sessione 'nome' su 'Mario'.
+ * + (somma)
+ * - (sottrazione)
+ * * (moltiplicazione)
+ * / (divisione)
+ * % (modulo)
  * 
- * Infine viene stampato l'ID della sessione corrente utilizzando la funzione session_id().
+ * Nel seguente esempio viene illustrato come utilizzare questi operatori.
  */
 
-session_start();
+$numero = 10;
 
-$_SESSION['nome'] = 'Mario';
+$numeroStringa = "10";
 
-echo "ID della sessione corrente: " . session_id();
+// applicazione dell'operatore unario -
+// che restituisce il valore negativo di un numero
+echo - $numero; // stampa -10
+
+// applicazione dell'operatore unario -
+// che restituisce il valore negativo di una stringa
+var_dump(-$numero); // stampa int(-10)
 
