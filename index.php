@@ -1,38 +1,31 @@
 <?php
+
 /**
- * Avvia una nuova o riprende una sessione esistente e salva i dati inseriti dall'utente.
- * 
- * Utilizza la funzione session_start() per avviare una nuova o riprendere una precedente sessione.
- * Successivamente, viene verificato se è stato invocato un POST tramite la superglobale $_POST.
- * Se è vero, viene salvato il valore inserito nell'input del form con la chiave 'colori' nella sessione con la chiave 'preferenzaColori'.
- * Inoltre, viene salvata la data corrente con la chiave 'data' nella sessione.
+ * Verifica lo stato della sessione
+ *
+ * In questa pagina viene verificato lo stato della sessione utilizzando la funzione session_status().
+ * La funzione session_status() restituisce PHP_SESSION_NONE se la sessione non è stata avviata,
+ * PHP_SESSION_ACTIVE se la sessione è attiva.
+ *
+ * Per utilizzare sessioni in PHP, è necessario prima definire la posizione di salvataggio delle sessioni
+ * utilizzando la funzione session_save_path(). In questo esempio viene utilizzato il percorso "/sessioni"
+ * che deve essere creato all'interno della cartella del documento principale.
+ *
+ * Successivamente viene avviata la sessione utilizzando la funzione session_start().
+ * La funzione session_start() restituisce un valore booleano, che può essere utilizzato per verificare
+ * se la sessione è stata avviata con successo.
+ *
+ * Infine, viene utilizzata la funzione session_id() per visualizzare l'ID della sessione attualmente attiva.
  */
+
+session_save_path($_SERVER['DOCUMENT_ROOT'] . '/sessioni');
 session_start();
-echo 'ID: ' . session_id()."<br>"; // stampa l'id della sessione
-echo 'Save Path: ' .session_save_path(). "<br>"; // stampa il percorso di salvataggio della sessione
+$statoSessione = session_status();
 
-if(isset($_POST['colori'])) {
-  $_SESSION['preferenzaColori'] = $_POST['colori']; // salva il valore inserito nell'input del form nella sessione
-  $_SESSION['data'] = date("d/m/Y"); // salva la data corrente nella sessione
+if ($statoSessione === PHP_SESSION_NONE) {
+  echo "Sessione non attiva";
+} else if ($statoSessione === PHP_SESSION_ACTIVE) {
+  echo "Sessione attiva";
 }
-?>
 
-<!DOCTYPE html>
-<html lang="it">
-
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
-
-  <body>
-    <a href="pagina2.php">Link a pagina 2</a>
-    <form action="" method="post" enctype="multipart/form-data">
-      <input type="text" class="text"
-        name="colori" placeholder="Inserisci il tuo colore preferito">
-      <input type="submit" value="Invia" name="submit">
-    </form>
-  </body>
-
-</html>
+echo "<br>ID della sessione: " . session_id();
