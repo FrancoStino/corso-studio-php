@@ -1,45 +1,33 @@
 <?php
 
-// Introduzione agli array superglobali: 043 capitolo 
+// // Array superglobale GET
+// echo "Corso {$_GET['corso']} di realizzato da {$_GET['nome']}".PHP_EOL;
 
-// $GLOBALS
 
-$corso = 'PHP';
+// // Con extract
 
-function stampaCorso()
-{
-  global $corso;
+// extract($_GET);
 
-  echo $corso . '<br>';
-  echo $GLOBALS['corso'];
-}
+// echo "Corso $corso di realizzato da $nome" . PHP_EOL;
 
-stampaCorso();
+var_dump($_GET);
+?>
 
-// $_SERVER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <title>Document</title>
+</head>
+<body>
+  <form action="index.php" method="get">
 
-echo $_SERVER['PHP_SELF'];
+    <label for="corso">Corso</label>
+    <input type="text" name="corso" id="corso">
+    <label for="nome">Nome</label>
+    <input type="text" name="nome" id="nome">
+    <input type="submit" value="Invia">
 
-// $_GET
-
-echo $_GET['nome'];
-
-// $_POST
-
-echo $_POST['nome'];
-
-// $_FILES
-
-echo $_FILES['nome'];
-
-// $_REQUEST
-
-echo $_REQUEST['nome'];
-
-// $_SESSION
-
-echo $_SESSION['nome'];
-
-// $_COOKIE
-
-echo $_COOKIE['nome'];
+  </form>
+</body>
+</html>
