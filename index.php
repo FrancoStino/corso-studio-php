@@ -1,32 +1,24 @@
 <?php
 
 /**
- * Operatore ternario ?:
+ * Esempio di utilizzo dell'operatore null coalescing (??).
  *
- * Permette di scrivere in modo più conciso una condizione che restituisce un valore
- * diverso a seconda del risultato della condizione.
+ * L'operatore null coalescing (??), introdotto in PHP 7, permette di fornire un valore
+ * di default in caso di un valore null o inesistente.
  *
- * Sintassi:
+ * La sintassi è la seguente:
  *
- *      $valore = ($condizione) ? $valoreSeVero : $valoreSeFalso;
+ * $var = $valore ?? $valoreDefault;
  *
- * Esempio:
+ * Ad esempio, nel seguente codice viene letta la variabile $_GET['page'] e, se esiste e
+ * non è null, viene assegnata a $page. In caso contrario, viene assegnato il valore
+ * di default 1.
  *
- *      $anni = 14;
- *      $costoBiglietto = ($anni < 12) ? 5 : 10;
- *      echo "Costo biglietto: " . $costoBiglietto;
- *
- * Output:
- *
- *      Costo biglietto: 10
- *
- * In questo esempio, se $anni è minore di 12, il valore di $costoBiglietto sarà 5,
- * altrimenti sarà 10.
+ * @link http://php.net/manual/en/migration70.new-features.php#migration70.new-features.null-coalesce-op
  */
 
-$anni = 14;
+// https://localhost/corsi/php/index.php?page=2
 
-$costoBiglietto = ($anni < 12) ? 5 : 10;
+$page = $_GET['page'] ?? 1;
 
-echo "Costo biglietto: " . $costoBiglietto;
-
+echo $page;
