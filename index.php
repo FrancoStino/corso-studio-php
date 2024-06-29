@@ -1,36 +1,23 @@
 <?php
 
 /**
- * Documentazione
+ * Esempio di array di stringhe con nomi di alunni.
+ * In questo caso, l'array è statico e contiene i nomi di tre alunni.
+ * Successivamente, viene utilizzato un ciclo for per stampare i nomi
+ * nell'ordine in cui sono presenti nell'array. Successivamente, viene
+ * utilizzato un ciclo for per stampare i nomi nell'ordine inverso.
  *
- * Questo script esegue due cicli while:
- * 1. Ciclo while per contare da 0 a 10
- * 2. Ciclo while per stampare gli elementi di un array, utilizzando array_pop
- *
- * @author <a href="mailto:andrea.rinaldi2@libero.it">Andrea Rinaldi</a>
- * @version 1.0
+ * @var array $alunni
  */
-
-// Ciclo while per contare da 0 a 10
-$condizione = true;
-$i          = 0;
-
-while ($condizione) {
-  if ($i <= 10) {
-    echo $i++, ' ';
-  } else {
-    $condizione = false;
-  }
-}
-
-echo "\n";
-
-// Ciclo while per stampare gli elementi di un array, utilizzando array_pop
 $alunni       = ['Marco', 'Simona', 'Andrea'];
 $numeroAlunni = count($alunni);
 
-$i = 0;
+// Stampa i nomi nell'ordine in cui sono presenti nell'array.
+for($i = 0; $i < $numeroAlunni; $i++) {
+  echo $alunni[$i] . PHP_EOL;
+}
 
-while ($alunno = array_pop($alunni)){
-  echo $alunno, '<br>';
+// Stampa i nomi nell'ordine inverso.
+for($i = $numeroAlunni - 1; $i >= 0; $i--) {
+  echo $alunni[$i] . PHP_EOL;
 }
