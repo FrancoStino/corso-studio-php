@@ -1,49 +1,36 @@
 <?php
 
-// if else
+/**
+ * Documentazione
+ *
+ * Questo script esegue due cicli while:
+ * 1. Ciclo while per contare da 0 a 10
+ * 2. Ciclo while per stampare gli elementi di un array, utilizzando array_pop
+ *
+ * @author <a href="mailto:andrea.rinaldi2@libero.it">Andrea Rinaldi</a>
+ * @version 1.0
+ */
 
+// Ciclo while per contare da 0 a 10
+$condizione = true;
+$i          = 0;
 
-$isLoggedd = false;
+while ($condizione) {
+  if ($i <= 10) {
+    echo $i++, ' ';
+  } else {
+    $condizione = false;
+  }
+}
 
+echo "\n";
 
-?>
+// Ciclo while per stampare gli elementi di un array, utilizzando array_pop
+$alunni       = ['Marco', 'Simona', 'Andrea'];
+$numeroAlunni = count($alunni);
 
+$i = 0;
 
-<!DOCTYPE html>
-<html lang = "en">
-
-  <head>
-    <meta charset = "UTF-8">
-    <meta name    = "viewport" content = "width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
-
-  <body>
-    <nav>
-      <ul>
-        <li><a href = "">Home</a></li>
-        <li><a href = "">Suka</a></li>
-        <?php
-        if ($isLogged === true): ?>
-          <li><a href = "">Ciaooooooo</a></li>
-
-        <?php else: ?>
-          <li><a href = "">Addio</a></li>
-        <?php endif; ?>
-      </ul>
-    </nav>
-  </body>
-
-</html>
-
-<?php
-
-$anni = 18;
-
-if ($anni <= 12) {
-  echo "Ha meno di 12 anni";
-} elseif ($anni >= 12 && $anni < 18) {
-  echo "Ha tra i 12 e i 17 anni";
-} else {
-  echo "Ha 18 anni o più";
+while ($alunno = array_pop($alunni)){
+  echo $alunno, '<br>';
 }
