@@ -1,18 +1,31 @@
 <?php
 
-// Questo è un esempio di utilizzo della funzione 'match' introdotta in PHP 8.
-// La funzione 'match' permette di eseguire una serie di istruzioni in base a un valore specifico.
-// In questo caso, viene verificato il valore di $errorCode e viene restituito un messaggio corrispondente.
+/**
+ * In questo esempio vengono illustrate le differenze tra require e include.
+ *
+ * require e include sono entrambe funzioni PHP che permettono di includere
+ * un file all'interno di un altro. La differenza principale tra le due
+ * consiste nel fatto che require se il file non viene trovato genera un
+ * errore e interrompe l'esecuzione del programma, mentre include solo genera
+ * un avviso e continua l'esecuzione.
+ *
+ * In questo caso, se il file 'funzioni.php' non viene trovato, l'esecuzione
+ * del programma viene interrotta con un errore. Se il file fosse incluso
+ * invece mediante include, l'avviso generato sarebbe visibile nel log degli
+ * errori ma l'esecuzione del programma continuerebbe.
+ */
 
-$errorCode = 502; // Imposta il valore di $errorCode a 502
+// require e include
 
-// Utilizzo della funzione 'match' per verificare il valore di $errorCode
-// e restituire un messaggio corrispondente.
-$msg = match($errorCode) {
-  404 => 'Not Found', // Se $errorCode è uguale a 404, restituisce 'Not Found'
-  500 => 'Internal Server Error', // Se $errorCode è uguale a 500, restituisce 'Internal Server Error'
-  502 => 'Bad Gateway', // Se $errorCode è uguale a 502, restituisce 'Bad Gateway'
-  default => 'Unknown Error', // Se $errorCode non corrisponde ad alcuna delle opzioni precedenti, restituisce 'Unknown Error'
-};
+require 'funzioni.php';
 
-echo $msg; // Stampa il messaggio corrispondente al valore di $errorCode
+
+// Chiama la funzione test() definita in 'funzioni.php'
+test();
+
+// Chiama la funzione test2() definita in 'funzioni.php'
+test2();
+
+
+
+echo "Codice eseguito";

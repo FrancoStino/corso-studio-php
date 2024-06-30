@@ -1,0 +1,3 @@
+<?php
+
+$nomeCorso = "PHP";
