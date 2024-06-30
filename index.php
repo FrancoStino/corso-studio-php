@@ -1,23 +1,26 @@
 <?php
 
 /**
- * Esempio di array di stringhe con nomi di alunni.
- * In questo caso, l'array è statico e contiene i nomi di tre alunni.
- * Successivamente, viene utilizzato un ciclo for per stampare i nomi
- * nell'ordine in cui sono presenti nell'array. Successivamente, viene
- * utilizzato un ciclo for per stampare i nomi nell'ordine inverso.
- *
- * @var array $alunni
+ * In questo script vengono stampati tutti i valori presenti nell'array $user,
+ * utilizzando un ciclo foreach.
+ * 
+ * Per ogni elemento dell'array $user, viene stampato il relativo chiave seguito
+ * dal valore. Se il valore dell'elemento è un array, viene stampato come
+ * stringa separata da virgole.
  */
-$alunni       = ['Marco', 'Simona', 'Andrea'];
-$numeroAlunni = count($alunni);
 
-// Stampa i nomi nell'ordine in cui sono presenti nell'array.
-for($i = 0; $i < $numeroAlunni; $i++) {
-  echo $alunni[$i] . PHP_EOL;
+$user = [
+  'name' => 'John',
+  'profession' => ['developer', 'designer'],
+  'age' => 30
+];
+
+foreach($user as $key => $valore){
+  echo "$key: ";
+  if(!is_array($valore)){
+    echo "$valore" . PHP_EOL;
+  } else {
+    echo implode(',', $valore) . PHP_EOL;
+  }
 }
 
-// Stampa i nomi nell'ordine inverso.
-for($i = $numeroAlunni - 1; $i >= 0; $i--) {
-  echo $alunni[$i] . PHP_EOL;
-}
