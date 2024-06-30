@@ -2,9 +2,10 @@ name: hello-lando
 recipe: lamp
 config:
   webroot: .
+  php: 8.3
+  via: nginx
   
 proxy:
-
   mailhog:
     - mailhog.hello-lando.lndo.site
   phpmyadmin:
