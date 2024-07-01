@@ -3,7 +3,6 @@ recipe: lamp
 config:
   webroot: .
   php: 8.3
-  via: nginx
   
 proxy:
   mailhog:
