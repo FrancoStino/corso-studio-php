@@ -1,31 +1,11 @@
 <?php
 
-// Ordinare un array
+// Calcolare il valore minimo, maggiore e medio di un array
 
-// Creazione dell'array dei risultati
-$risultati = [
-  'Antonio' => 12.75,
-  'Marco' => 11.75,
-  'Luigi' => 13.50
-];
+$votiEsami = [28, 30, 29, 26, 18];
 
-// Ordinamento in ordine alfabetico
-asort($risultati);
-echo "<br>";
-print_r($risultati);
+$min = min($votiEsami);
+$max = max($votiEsami);
+$avg = array_sum($votiEsami) / count($votiEsami);
 
-// Ordinamento in ordine alfabetico decrescente
-arsort($risultati);
-echo "<br>";
-print_r($risultati);
-
-// Ordinamento in ordine crescente per chiave
-ksort($risultati);
-echo "<br>";
-print_r($risultati);
-
-// Ordinamento in ordine decrescente per chiave
-krsort($risultati);
-echo "<br>";
-print_r($risultati);
-
+echo "min: $min, max: $max, avg: $avg";
