@@ -1,18 +1,27 @@
 <?php
 
-function redirectByLanguage() {
-    // Redirect in base alla lingua
+/**
+ * Funzione per mescolare le parole in una stringa.
+ *
+ * La funzione prende in input una stringa e la divide in un array di parole utilizzando la funzione explode(),
+ * poi mescola le parole utilizzando la funzione shuffle() e infine le riunisce in un'unica stringa utilizzando la
+ * funzione implode().
+ *
+ * @param string $str La stringa da mescolare.
+ * @return void
+ */
 
-    $linguaSito = ["it", "en"];
-    $preferenze = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+$str = "Spero che sia un buon corso di PHP";
 
-    $lingueDiPreferenza = explode(",", $preferenze);
+// Divide la stringa in un array di parole
+$arrayParole = explode(" ", $str);
 
-    foreach ($lingueDiPreferenza as $lingua) {
-        $preferenza = substr($lingua, 0, 2);
-        if (in_array($preferenza, $linguaSito)) {
-            header("Location: /" . $preferenza);
-            exit;
-        }
-    }
-}
+// Mescola le parole nell'array
+shuffle($arrayParole);
+
+// Riunisce le parole nell'array in una stringa
+$str = implode(" ", $arrayParole);
+
+// Stampa la stringa mescolata
+echo $str;
+
