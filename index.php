@@ -1,27 +1,31 @@
 <?php
 
-/**
- * Funzione per mescolare le parole in una stringa.
- *
- * La funzione prende in input una stringa e la divide in un array di parole utilizzando la funzione explode(),
- * poi mescola le parole utilizzando la funzione shuffle() e infine le riunisce in un'unica stringa utilizzando la
- * funzione implode().
- *
- * @param string $str La stringa da mescolare.
- * @return void
- */
+// Ordinare un array
 
-$str = "Spero che sia un buon corso di PHP";
+// Creazione dell'array dei risultati
+$risultati = [
+  'Antonio' => 12.75,
+  'Marco' => 11.75,
+  'Luigi' => 13.50
+];
 
-// Divide la stringa in un array di parole
-$arrayParole = explode(" ", $str);
+// Ordinamento in ordine alfabetico
+asort($risultati);
+echo "<br>";
+print_r($risultati);
 
-// Mescola le parole nell'array
-shuffle($arrayParole);
+// Ordinamento in ordine alfabetico decrescente
+arsort($risultati);
+echo "<br>";
+print_r($risultati);
 
-// Riunisce le parole nell'array in una stringa
-$str = implode(" ", $arrayParole);
+// Ordinamento in ordine crescente per chiave
+ksort($risultati);
+echo "<br>";
+print_r($risultati);
 
-// Stampa la stringa mescolata
-echo $str;
+// Ordinamento in ordine decrescente per chiave
+krsort($risultati);
+echo "<br>";
+print_r($risultati);
 
