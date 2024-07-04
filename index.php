@@ -1,20 +1,32 @@
 <?php
 
 /**
- * Calcola il valore minimo, maggiore e medio di un array di voti.
+ * Array multidimensionale che rappresenta la lista degli iscritti al corso PHP.
+ * Ciascun elemento dell'array è un array associativo che contiene le informazioni
+ * relative a un singolo iscritto, con le chiavi 'id', 'nome' e 'lavoro'.
  *
- * @param array $votiEsami Array di voti.
+ * @var array
+ */
+$iscritti = [
+  ["id" => 10, "nome" => "Gianluca", "lavoro" => "Programmatore"],
+  ["id" => 11, "nome" => "Marco", "lavoro" => "Cuoco"],
+  ["id" => 12, "nome" => "Luca", "lavoro" => "Designer"],
+  ["id" => 13, "nome" => "Giulla", "lavoro" => "Gestore"],
+  ["id" => 14, "nome" => "Giorgio", "lavoro" => "Assistente"]
+];
+
+/**
+ * Array unidimensionale che rappresenta la lista dei nomi degli iscritti,
+ * con le chiavi corrispondenti all'id degli iscritti.
+ *
+ * @var array
+ */
+$nomiIscritti = array_column($iscritti, "nome", "id");
+
+/**
+ * Stampa la lista degli iscritti.
+ *
  * @return void
  */
-function calcolaValoriMinimoMaggioreEMedia(array $votiEsami): void
-{
-    $min = min($votiEsami);
-    $max = max($votiEsami);
-    $avg = array_sum($votiEsami) / count($votiEsami);
+echo "Gli iscritti sono: " . implode(", ", $nomiIscritti);
 
-    echo "Minimo: $min, Massimo: $max, Media: $avg";
-}
-
-// Chiama la funzione con l'array di voti
-$votiEsami = [28, 30, 29, 26, 18];
-calcolaValoriMinimoMaggioreEMedia($votiEsami);
