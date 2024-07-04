@@ -1,53 +1,24 @@
 <?php
 
-// Esercizi sugli array
+// FUNZIONE filter_var:
+// sanifica delle variabili con filter_var
 
-// 1. Rimuovere un elemento in base al valore
-$test= ["PHP", "HTML", "CSS", "JS", "SQL", "HTML"];
-$key = array_search("HTML", $test);
-
-if ($key!== false) {
-    unset($test[$key]);
-}
-
-var_dump($test);
+// Esempio di utilizzo: sanificare un numero di telefono
+$tel = "+39 abc 333 444 555";
+$telClean = filter_var($tel, FILTER_SANITIZE_NUMBER_INT);
+echo "<p>Il numero di telefono originale è: <strong>$tel</strong><br>";
+echo "Il numero di telefono sanificato è: <strong>$telClean</strong></p>";
 
 
-// 2. Controllare la presenza di una chiave
-
-$test = [
-  'luisa' => 'admin',
-  'marco' => 'user'
-];
-
-if (array_key_exists('luisa', $test)) {
-    echo 'La chiave luisa esiste <br>'. PHP_EOL;
-}
+// Esempio di utilizzo: sanificare una stringa da tag a apici
+$str = "<script>alert('ciao')</script>";
+$strClean = filter_var($str, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+echo "<p>La stringa originale è: <strong>$str</strong><br>";
+echo "La stringa sanificata è: <strong>" . htmlspecialchars($strClean) . "</strong></p>";
 
 
-// 3. Ottenere la chiave del primo elemento
-
-$test = [
-  'myComp' => '/componenti',
-  'versione' => 1.0
-];
-
-echo key($test). PHP_EOL;
-next($test);
-echo key($test). PHP_EOL;
-prev($test);
-echo key($test). PHP_EOL;
-
-
-// 4. Creare un array con i valori interi da 1 a 10 e mescolarli
-
-$test = range(1, 10);
-shuffle($test);
-var_dump($test);
-
-// 5. Rimuovere elementi duplicati da un array
-
-$test = [3, 2, 4, 5, 2, 3];
-
-$test = array_unique($test);
-var_dump($test);
+// Esempio di utilizzo: sanificare aggiungendo uno slash prima degli apici
+$query = "Insert into t1 (c1) values ('ciao');";
+echo "<p>La query originale è: <strong>$query</strong><br>";
+echo "La query sanificata è: <strong>" . addslashes($query) . "</strong><br>";
+echo "La query sanificata è: <strong>" . filter_var($query, FILTER_SANITIZE_ADD_SLASHES) . "</strong></p>";
