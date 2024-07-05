@@ -1,86 +1,53 @@
 <?php
 
 /**
- * Esempio di utilizzo delle funzioni in PHP.
- */
-
-/**
- * Funzione `fn1`.
+ * Stampa tutti gli argomenti passati alla funzione.
  *
- * La funzione `fn1` viene chiamata direttamente. La sua funzione è quella di
- * stampare un messaggio che indica che la funzione è stata eseguita.
+ * @param mixed ...$valori Valori da stampare.
+ * @return void
  */
-function fn1()
-{
-  echo "Funzione fn1 eseguita" . PHP_EOL;
+function test(...$valori){
+  foreach ($valori as $value) {
+    echo $value . " ";
+  }
+  echo "\n";
 }
 
-// Chiamiamo la funzione `fn1`.
-fn1();
-
-/**
- * Funzione anonima eseguita direttamente.
- *
- * Questa funzione anonima viene immediatamente eseguita. La sua funzione è
- * quella di stampare un messaggio che indica che la funzione è stata eseguita.
- * Viene eseguita utilizzando la parentesi graffa `()`.
- */
-(function () {
-  echo "Funzione anonima eseguita" . PHP_EOL;
-})();
-
-/**
- * Funzione anonima con variabile.
- *
- * Questa funzione anonima viene assegnata a una variabile. Quindi, quando viene
- * chiamata la variabile, viene eseguita la funzione. La sua funzione è quella di
- * stampare un messaggio che indica che la funzione è stata eseguita.
- */
-$nomeFunzione = function () {
-  echo "Funzione anonima con variabile eseguita" . PHP_EOL;
-};
-
-// Chiamiamo la funzione anonima assegnata alla variabile `$nomeFunzione`.
-$nomeFunzione();
+// Chiama la funzione test con 5 argomenti
+test(1, 2, 3, 4, 5);
 
 
 /**
- * Funzione `fn2`.
+ * Calcola la somma di tutti gli argomenti passati alla funzione.
  *
- * La funzione `fn2` viene chiamata passando due parametri: `$nome` e `$cognome`.
- * La sua funzione è quella di stampare i valori dei parametri.
- *
- * @param string $nome Nome del parametro.
- * @param string $cognome Cognome del parametro.
+ * @param int ...$numeri Valori da sommare.
+ * @return int La somma dei valori passati.
  */
-function fn2($nome, $cognome)
-{
-  echo "Nome: $nome, Cognome: $cognome" . PHP_EOL;
+function somma(...$numeri){
+  $somma = 0;
+  foreach ($numeri as $numero) {
+    $somma += $numero;
+  }
+  return $somma;
 }
 
-// Chiamiamo la funzione `fn2`.
-fn2("Mario", "Rossi");
+// Chiama la funzione somma con 5 argomenti
+echo somma(1, 2, 3, 4, 5) . "\n";
 
 
 /**
- * Funzione `fn3`.
+ * Stampa i primi due argomenti della funzione, poi tutti gli altri.
  *
- * La funzione `fn3` viene chiamata passando due parametri: `$nome` e `$cognome`.
- * La sua funzione è quella di restituire una stringa che contiene i valori dei
- * parametri.
- *
- * @param string $nome Nome del parametro.
- * @param string $cognome Cognome del parametro.
- * @return string La stringa contenente i valori dei parametri.
+ * @param mixed $a Primo argomento.
+ * @param mixed $b Secondo argomento.
+ * @param mixed ...$valori Valori da stampare.
+ * @return void
  */
-function fn3($nome, $cognome)
+function somma2($a, $b, ...$valori)
 {
-  return "Nome: $nome, Cognome: $cognome" . PHP_EOL;
+  var_dump($a, $b, $valori);
 }
 
-// Chiamiamo la funzione `fn3` e le assegniamo il risultato in una variabile.
-$nomeCognome = fn3("Mario", "Rossi");
-
-// Stampiamo la variabile `$nomeCognome`.
-echo $nomeCognome;
+// Chiama la funzione somma2 con 3 argomenti
+echo somma2(1, 2, 3);
 
