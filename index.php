@@ -1,39 +1,86 @@
 <?php
 
 /**
- * Validazione delle variabili con `filter_var()`
- *
- * Questo script mostra come utilizzare la funzione `filter_var()` per
- * validare le variabili.
- *
- * La funzione `filter_var()` prende in input una variabile e la esegue
- * attraverso un filtro specificato. In questo caso viene utilizzato il
- * filtro `FILTER_VALIDATE_INT` per validare che una variabile sia un numero
- * intero.
- *
- * La funzione `filter_var()` restituisce il valore validato se la validazione
- * è andata a buon fine, altrimenti restituisce `false`.
- *
- * Per la validazione di un numero intero si può anche specificare dei
- * parametri di validazione utilizzando l'array `options`. In questo caso
- * viene utilizzato per specificare che il numero deve essere compreso tra 1
- * e 10.
- *
- * La funzione `filter_var()` può essere utilizzata anche per validare un
- * indirizzo email con il filtro `FILTER_VALIDATE_EMAIL`.
+ * Esempio di utilizzo delle funzioni in PHP.
  */
 
-// Validazione numero
-$numero = "15";
-$test = filter_var($numero, FILTER_VALIDATE_INT, [
-  "options" => ["min_range" => 1, "max_range" => 10]
-]);
-var_dump($test);
+/**
+ * Funzione `fn1`.
+ *
+ * La funzione `fn1` viene chiamata direttamente. La sua funzione è quella di
+ * stampare un messaggio che indica che la funzione è stata eseguita.
+ */
+function fn1()
+{
+  echo "Funzione fn1 eseguita" . PHP_EOL;
+}
 
-// Validazione email
+// Chiamiamo la funzione `fn1`.
+fn1();
 
-$email = "suka@gmail@gmail.com";
-$email = "suka@gmail.com";
+/**
+ * Funzione anonima eseguita direttamente.
+ *
+ * Questa funzione anonima viene immediatamente eseguita. La sua funzione è
+ * quella di stampare un messaggio che indica che la funzione è stata eseguita.
+ * Viene eseguita utilizzando la parentesi graffa `()`.
+ */
+(function () {
+  echo "Funzione anonima eseguita" . PHP_EOL;
+})();
 
-$test = filter_var($email, FILTER_VALIDATE_EMAIL);
-var_dump($test);
+/**
+ * Funzione anonima con variabile.
+ *
+ * Questa funzione anonima viene assegnata a una variabile. Quindi, quando viene
+ * chiamata la variabile, viene eseguita la funzione. La sua funzione è quella di
+ * stampare un messaggio che indica che la funzione è stata eseguita.
+ */
+$nomeFunzione = function () {
+  echo "Funzione anonima con variabile eseguita" . PHP_EOL;
+};
+
+// Chiamiamo la funzione anonima assegnata alla variabile `$nomeFunzione`.
+$nomeFunzione();
+
+
+/**
+ * Funzione `fn2`.
+ *
+ * La funzione `fn2` viene chiamata passando due parametri: `$nome` e `$cognome`.
+ * La sua funzione è quella di stampare i valori dei parametri.
+ *
+ * @param string $nome Nome del parametro.
+ * @param string $cognome Cognome del parametro.
+ */
+function fn2($nome, $cognome)
+{
+  echo "Nome: $nome, Cognome: $cognome" . PHP_EOL;
+}
+
+// Chiamiamo la funzione `fn2`.
+fn2("Mario", "Rossi");
+
+
+/**
+ * Funzione `fn3`.
+ *
+ * La funzione `fn3` viene chiamata passando due parametri: `$nome` e `$cognome`.
+ * La sua funzione è quella di restituire una stringa che contiene i valori dei
+ * parametri.
+ *
+ * @param string $nome Nome del parametro.
+ * @param string $cognome Cognome del parametro.
+ * @return string La stringa contenente i valori dei parametri.
+ */
+function fn3($nome, $cognome)
+{
+  return "Nome: $nome, Cognome: $cognome" . PHP_EOL;
+}
+
+// Chiamiamo la funzione `fn3` e le assegniamo il risultato in una variabile.
+$nomeCognome = fn3("Mario", "Rossi");
+
+// Stampiamo la variabile `$nomeCognome`.
+echo $nomeCognome;
+
