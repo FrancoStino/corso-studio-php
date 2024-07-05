@@ -1,18 +1,43 @@
 <?php
 
-/**
- * Calcola il valore di un parametro.
- *
- * @param float $p1 Il parametro da calcolare.
- * @return bool true se il calcolo è andato a buon fine, false altrimenti.
- */
-function calcolaValore( float $p1 ): bool
+// Type hinting - nullable e union types
+
+declare(strict_types=1);
+
+
+function fn1( int|float $p1 )
 {
-  // Il parametro $p1 viene convertito in float, quindi siamo sicuri che sia un numero.
-  // In questo caso, il metodo restituisce sempre true.
-  return true;
+
 }
 
-// Chiamo la funzione e stampiamo il risultato.
-// In questo caso, il risultato è true, poiché il metodo restituisce sempre true.
-var_dump( calcolaValore( "22" ) );
+function fn2( string|int|bool $p1 )
+{
+
+}
+
+fn1( 1 );
+fn1( 3.1415 );
+fn2( true );
+fn2( 123 );
+fn2( "ciao" );
+
+
+// Type hinting - array type
+
+function fn3( array $p1 )
+{
+
+}
+
+fn3( [] );
+
+
+// Type hinting - null float
+
+function fn4( ?float $p1 )
+{
+
+}
+
+fn4( null );
+fn4( 3.1415 );
