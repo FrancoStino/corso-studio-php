@@ -1,33 +1,14 @@
 <?php
-// array_filter( array, callback )
-$prodotti = [ 
-  [ 
-    'nome'   => 'Mouse Gaming',
-    'prezzo' => 50,
-  ],
-  [ 
-    'nome'   => 'Dell 27 pollici',
-    'prezzo' => 380,
-  ],
-  [ 
-    'nome'   => 'Dell 32 Pollici',
-    'prezzo' => 450,
-  ],
-  [ 
-    'nome'   => 'Iphone 15',
-    'prezzo' => 899,
-  ],
-  [ 
-    'nome'   => 'Iphone 15 Max',
-    'prezzo' => 1299,
-  ],
-];
 
-function filtraProdotti( $prodotto )
+// Programmazione orientata agli oggetti
+
+class Corso
 {
-  return $prodotto[ 'prezzo' ] > 400 && $prodotto[ 'prezzo' ] < 1000;
+  // corpo della classe
+
 }
 
-$prodottiFiltrati = array_filter( $prodotti, 'filtraProdotti' );
+$corsoPHP = new Corso();
+$corsoJS  = new Corso();
 
-var_dump( $prodottiFiltrati );
+var_dump( $corsoPHP, $corsoJS );
