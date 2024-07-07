@@ -1,56 +1,52 @@
 <?php
 
 /**
- * Questo script illustra la programmazione orientata agli oggetti in PHP.
- * Viene definita una classe Corso che rappresenta un corso di formazione.
- * Si creano tre oggetti della classe Corso, PHP, JS e Node.js.
- * Per ogni oggetto si sovrascrivono i valori delle proprietà pubbliche.
- * Infine vengono stampati a schermo i valori delle proprietà dei tre oggetti.
+ * Esercizio di programmazione orientata agli oggetti.
+ * Creazione di due oggetti della classe Corso.
+ * Stampa dei dati dei due oggetti.
  */
 
 class Corso
 {
   /**
-   * Titolo del corso.
-   * @var string
+   * @var string $titolo Títolo del corso.
+   * @var string $autore Autore del corso.
+   * @var string $categoria Categoria del corso.
+   * @var int $prezzo Prezzo del corso.
    */
-  public $titolo = 'Corso X';
-
-  /**
-   * Autore del corso.
-   * @var string
-   */
-  public $autore = 'Mario Rossi';
-
-  /**
-   * Categoria del corso.
-   * @var string
-   */
+  public $titolo    = 'Corso X';
+  public $autore    = 'Mario Rossi';
   public $categoria = 'Senza categoria';
+  public $prezzo    = 0;
 
   /**
-   * Prezzo del corso.
-   * @var float
+   * Riepilogo del corso.
+   *
+   * @return string Riepilogo del corso.
    */
-  public $prezzo = 0;
+  public function riepilogo()
+  {
+    return "Titolo: " . $this->titolo . '<br>' .
+           "Autore: " . $this->autore . '<br>' .
+           "Categoria: " . $this->categoria . '<br>' .
+           "Prezzo: " . $this->prezzo . '<br>';
+  }
+
 }
 
-// Creazione degli oggetti della classe Corso
-$corsoPHP  = new Corso();
-$corsoJS   = new Corso();
-$corsoNode = new Corso();
+// Creazione di due oggetti della classe Corso.
+$corsoPHP            = new Corso();
+$corsoPHP->titolo    = 'Corso PHP';
+$corsoPHP->autore    = 'Mario Rossi';
+$corsoPHP->categoria = 'Backend';
+$corsoPHP->prezzo    = 200;
 
-// Sovrascrizione dei valori delle proprietà pubbliche
-$corsoPHP->titolo    = 'Corso PHP <br>';
-$corsoPHP->categoria = 'Backend <br>';
-$corsoPHP->prezzo    = 10;
+$corsoJS            = new Corso();
+$corsoJS->titolo    = 'Corso JS';
+$corsoJS->autore    = 'Mario Culo';
+$corsoJS->categoria = 'Frontend';
+$corsoJS->prezzo    = 300;
 
-$corsoJS->titolo    = 'Corso JS <br>';
-$corsoJS->categoria = 'Backend <br>';
-$corsoJS->prezzo    = 20;
-
-// Stampa a schermo dei valori delle proprietà dei tre oggetti
-echo $corsoPHP->titolo . "Corso PHP Sovrascritto<br>";
-echo $corsoPHP->titolo;
-
-var_dump( $corsoPHP, $corsoJS );
+// Stampa dei dati dei due oggetti.
+echo $corsoPHP->riepilogo(). '<br>';
+echo $corsoJS->riepilogo();
