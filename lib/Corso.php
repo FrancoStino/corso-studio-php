@@ -20,7 +20,7 @@ class Corso
     public string $categoria = "Senza Categoria",
     public int|float $prezzo = 0
   ) {
-    echo "Costruttore della classe " . __CLASS__ . " invocato<br>";
+    // echo "Costruttore della classe " . __CLASS__ . " invocato<br>";
   }
 
   /**
@@ -51,9 +51,13 @@ class Frontend extends Corso
    *
    * @param string $titolo The title of the course.
    */
-  public function __construct ( $titolo ) {
-    parent::__construct( $titolo );
-    echo "Costruttore della classe " . __CLASS__ . " invocato<br>";
+  public function __construct ( $titolo, $prezzo ) {
+    parent::__construct( $titolo, categoria: "Frontend", prezzo: $prezzo );
+    // echo "Costruttore della classe " . __CLASS__ . " invocato<br>";
+  }
+
+  public function moduleBundlerConfig () {
+    echo "metodo " . __METHOD__ . " invocato<br>";
   }
 }
 
@@ -67,8 +71,14 @@ class Backend extends Corso
    * Costruttore della classe Backend.
    * Stampa un messaggio di invocazione del costruttore.
    */
-  public function __construct () {
-    echo "Costruttore della classe " . __CLASS__ . " invocato<br>";
+  public function __construct ($titolo, $prezzo) {
+    parent::__construct( $titolo, categoria: "Backend", prezzo: $prezzo );
+
+    // echo "Costruttore della classe " . __CLASS__ . " invocato<br>";
+  }
+
+  public function serverConfig () {
+    echo "metodo " . __METHOD__ . " invocato<br>";
   }
 }
 

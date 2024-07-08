@@ -9,6 +9,9 @@ declare(strict_types=1);
 require_once 'lib/Corso.php';
 
 
-$css = new Frontend(titolo: "CSS");
+$css = new Frontend("CSS",19);
+$php = new Backend("php", 30);
 
-var_dump($css);
+
+$css -> moduleBundlerConfig();
+$php -> serverConfig();
