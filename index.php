@@ -7,11 +7,12 @@
  */
 declare(strict_types=1);
 require_once 'lib/Corso.php';
+require_once 'lib/Frontend.php';
+require_once 'lib/Backend.php';
 
 
-$css = new Frontend("CSS",19);
-$php = new Backend("php", 30);
+$css = new Frontend("CSS",19, "Configurazione corso Frontend");
+$php = new Backend("PHP", 30, "Configurazione corso Backend");
 
-
-$css -> moduleBundlerConfig();
-$php -> serverConfig();
+echo $css->riepilogo(), '<br>';
+echo $php->riepilogo(), '<br>';
