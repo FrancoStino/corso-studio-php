@@ -4,8 +4,8 @@ class Corso {
 
   public function __construct (
     public string $titolo,
-    public string $autore,
-    public string $categoria,
+    public string $autore = "Gianluca",
+    public string $categoria = "Senza Categoria",
     public int|float $prezzo = 0
   ) {}
 
