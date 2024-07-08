@@ -13,5 +13,5 @@ require_once 'lib/Statistiche.php';
 
 
 // $corsoPHP = new Corso( "Corso SUKA" );
-$corsoJS = new Frontend( "Corso JS", 1000 );
+$corsoJS = new Frontend( "Corso JS", 1000, "Configurazione JS" );
 $statistiche = new Statistiche( $corsoJS );
