@@ -28,7 +28,7 @@ class Corso
    *
    * @return string Riepilogo del corso.
    */
-  public function riepilogo () {
+  protected function riepilogo () {
     return
       "Titolo: " . $this->titolo . '<br>' .
       "Autore: " . $this->autore . '<br>' .

@@ -17,9 +17,9 @@ class Frontend extends Corso
     $this->frontendConfig1 = $conf1;
   }
 
-  public function riepilogo() {
+  public function riepilogo () {
     $riepilogo = parent::riepilogo();
-    return $riepilogo. "Configurazione: ". $this->frontendConfig1;
+    return $riepilogo . "Configurazione: " . $this->frontendConfig1;
   }
 
   public function moduleBundlerConfig () {
