@@ -9,8 +9,6 @@ declare(strict_types=1);
 require_once 'lib/Corso.php';
 
 
-$corsoPHP = new Corso(
-  titolo: "Corso PHP",
-  prezzo: 19
-);
+$css = new Frontend(titolo: "CSS");
 
+var_dump($css);

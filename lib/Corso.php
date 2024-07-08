@@ -19,7 +19,9 @@ class Corso
     public string $autore = "Gianluca",
     public string $categoria = "Senza Categoria",
     public int|float $prezzo = 0
-  ) {}
+  ) {
+    echo "Costruttore della classe " . __CLASS__ . " invocato<br>";
+  }
 
   /**
    * Restituisce il riepilogo del corso.
@@ -43,11 +45,14 @@ class Corso
  */
 class Frontend extends Corso
 {
+
   /**
-   * Costruttore della classe Frontend.
-   * Stampa un messaggio di invocazione del costruttore.
+   * Constructs a new Frontend instance.
+   *
+   * @param string $titolo The title of the course.
    */
-  public function __construct () {
+  public function __construct ( $titolo ) {
+    parent::__construct( $titolo );
     echo "Costruttore della classe " . __CLASS__ . " invocato<br>";
   }
 }
@@ -66,12 +71,4 @@ class Backend extends Corso
     echo "Costruttore della classe " . __CLASS__ . " invocato<br>";
   }
 }
-
-$css = new Frontend();
-$php = new Backend();
-
-
-echo "<pre>";
-var_dump($css, $php);
-echo "</pre>";
 
