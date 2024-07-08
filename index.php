@@ -9,15 +9,9 @@ declare(strict_types=1);
 require_once 'lib/Corso.php';
 require_once 'lib/Frontend.php';
 require_once 'lib/Backend.php';
+require_once 'lib/Statistiche.php';
 
 
-// $css = new Frontend("CSS",19, "Configurazione corso Frontend");
-// $php = new Backend("PHP", 30, "Configurazione corso Backend");
-
-// $css->frontendConfig1 = "modificata";
-// echo $css->riepilogo(), '<br>';
-// echo $php->riepilogo(), '<br>';
-
-$corsoPHP = new Backend( "PHP" );
-
-echo $corsoPHP->riepilogo();
+// $corsoPHP = new Corso( "Corso SUKA" );
+$corsoJS = new Frontend( "Corso JS", 1000 );
+$statistiche = new Statistiche( $corsoJS );
