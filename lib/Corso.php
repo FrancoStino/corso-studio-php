@@ -18,7 +18,7 @@ class Corso
     public string $titolo,
     public string $autore = "Gianluca",
     public string $categoria = "Senza Categoria",
-    public int|float $prezzo = 0
+    public readonly int|float $prezzo = 0 // proprietà readonly: non può essere modificata dopo la creazione dell'oggetto
   ) {
     // echo "Costruttore della classe " . __CLASS__ . " invocato<br>";
   }

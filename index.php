@@ -11,9 +11,13 @@ require_once 'lib/Frontend.php';
 require_once 'lib/Backend.php';
 
 
-$css = new Frontend("CSS",19, "Configurazione corso Frontend");
-$php = new Backend("PHP", 30, "Configurazione corso Backend");
+// $css = new Frontend("CSS",19, "Configurazione corso Frontend");
+// $php = new Backend("PHP", 30, "Configurazione corso Backend");
 
-$css->frontendConfig1 = "modificata";
-echo $css->riepilogo(), '<br>';
-echo $php->riepilogo(), '<br>';
+// $css->frontendConfig1 = "modificata";
+// echo $css->riepilogo(), '<br>';
+// echo $php->riepilogo(), '<br>';
+
+$corsoPHP = new Backend( "PHP" );
+
+echo $corsoPHP->riepilogo();

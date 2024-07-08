@@ -12,11 +12,11 @@ class Backend extends Corso
    */
   public $backendConfig1;
 
-  public function __construct ( $titolo, $prezzo , $conf1 = "") {
+  public function __construct ( $titolo, $prezzo = 0, $conf1 = "" ) {
     parent::__construct( $titolo, categoria: "Backend", prezzo: $prezzo );
     $this->backendConfig1 = $conf1;
 
-    // echo "Costruttore della classe " . __CLASS__ . " invocato<br>";
+    // echo "Costruttore della classe " . __CLASS__ . " invocato<br>";              
   }
 
   public function riepilogo () {
