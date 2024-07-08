@@ -1,7 +1,19 @@
 <?php
 
-class Corso {
+/**
+ * La classe Corso rappresenta un corso di formazione.
+ */
+class Corso
+{
 
+  /**
+   * Costruttore della classe Corso.
+   *
+   * @param string $titolo Titolo del corso.
+   * @param string $autore Autore del corso, default "Gianluca".
+   * @param string $categoria Categoria del corso, default "Senza Categoria".
+   * @param int|float $prezzo Prezzo del corso, default 0.
+   */
   public function __construct (
     public string $titolo,
     public string $autore = "Gianluca",
@@ -10,7 +22,7 @@ class Corso {
   ) {}
 
   /**
-   * Riepilogo del corso.
+   * Restituisce il riepilogo del corso.
    *
    * @return string Riepilogo del corso.
    */
@@ -22,4 +34,44 @@ class Corso {
       "Prezzo: " . $this->prezzo . '<br>';
   }
 
+
 }
+
+/**
+ * La classe Frontend estende la classe Corso.
+ * Rappresenta un corso di formazione frontend.
+ */
+class Frontend extends Corso
+{
+  /**
+   * Costruttore della classe Frontend.
+   * Stampa un messaggio di invocazione del costruttore.
+   */
+  public function __construct () {
+    echo "Costruttore della classe " . __CLASS__ . " invocato<br>";
+  }
+}
+
+/**
+ * La classe Backend estende la classe Corso.
+ * Rappresenta un corso di formazione backend.
+ */
+class Backend extends Corso
+{
+  /**
+   * Costruttore della classe Backend.
+   * Stampa un messaggio di invocazione del costruttore.
+   */
+  public function __construct () {
+    echo "Costruttore della classe " . __CLASS__ . " invocato<br>";
+  }
+}
+
+$css = new Frontend();
+$php = new Backend();
+
+
+echo "<pre>";
+var_dump($css, $php);
+echo "</pre>";
+
