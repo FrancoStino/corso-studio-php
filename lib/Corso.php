@@ -6,11 +6,13 @@
 class Corso
 {
   public static string $piattaforma = "Piattaforma X";
+  public const LIVELLO_BASE = 1;
+  public const LIVELLO_PRO  = 2;
 
   public static function info () {
-    echo "La piattaforma di corsi è: " . static::$piattaforma . '<br>';
+    self::$piattaforma = "Piattaforma sovrascritta";
   }
-  
+
   /**
    * Costruttore della classe Corso.
    *

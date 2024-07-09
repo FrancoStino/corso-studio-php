@@ -10,6 +10,6 @@ require_once 'lib/Corso.php';
 require_once 'lib/Frontend.php';
 require_once 'lib/Backend.php';
 
-echo Corso::$piattaforma . '<br>';
-echo Corso::class . '<br>';
-echo Frontend::info() . '<br>';
+
+Corso::info();
+echo Corso::$piattaforma. '<br>';
