@@ -13,7 +13,7 @@ class Corso implements UdemyCourse, GianlucaCourse
     self::$piattaforma = "Piattaforma sovrascritta";
   }
 
-  
+
   public function __construct (
     public string $titolo,
     public string $autore = "Gianluca",
@@ -23,9 +23,7 @@ class Corso implements UdemyCourse, GianlucaCourse
     // echo "Costruttore della classe " . __CLASS__ . " invocato<br>";
   }
 
-  public function curriculum(array $lezioni){
-    
-  }
+  public function curriculum ( array $lezioni ) {}
 
   public function requisiti () {}
 
