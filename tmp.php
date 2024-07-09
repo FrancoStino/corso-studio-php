@@ -1,7 +1,8 @@
 <?php
 
-trait Trait1{
-  public function fn1(){
+trait Trait1
+{
+  public function fn1 () {
     echo "Metodo " . __METHOD__ . " invocato<br>";
 
   }
@@ -9,7 +10,7 @@ trait Trait1{
 
 trait Trait2
 {
-  public function fn2 () {
+  public function fn1 () {
     echo "Metodo " . __METHOD__ . " invocato<br>";
 
   }
@@ -18,8 +19,10 @@ trait Trait2
 
 class A
 {
-  use Trait1, Trait2;
-
+  use Trait1,  Trait2 {
+    Trait2::fn1 insteadof Trait1;
+    Trait1::fn1 as fn1_a;
+  }
   public function a () {
     echo "Metodo " . __METHOD__ . " invocato<br>";
   }
@@ -27,5 +30,6 @@ class A
 
 $a = new A();
 $a->fn1();
-$a->fn2();
+$a->fn1_a();
+
 
