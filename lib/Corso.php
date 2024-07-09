@@ -3,7 +3,7 @@
 /**
  * La classe Corso rappresenta un corso di formazione.
  */
-abstract class Corso
+class Corso implements UdemyCourse, GianlucaCourse
 {
   public static string $piattaforma = "Piattaforma X";
   public const LIVELLO_BASE = 1;
@@ -13,14 +13,7 @@ abstract class Corso
     self::$piattaforma = "Piattaforma sovrascritta";
   }
 
-  /**
-   * Costruttore della classe Corso.
-   *
-   * @param string $titolo Titolo del corso.
-   * @param string $autore Autore del corso, default "Gianluca".
-   * @param string $categoria Categoria del corso, default "Senza Categoria".
-   * @param int|float $prezzo Prezzo del corso, default 0.
-   */
+  
   public function __construct (
     public string $titolo,
     public string $autore = "Gianluca",
@@ -29,6 +22,12 @@ abstract class Corso
   ) {
     // echo "Costruttore della classe " . __CLASS__ . " invocato<br>";
   }
+
+  public function curriculum(array $lezioni){
+    
+  }
+
+  public function requisiti () {}
 
   /**
    * Restituisce il riepilogo del corso.
@@ -43,6 +42,5 @@ abstract class Corso
       "Prezzo: " . $this->prezzo . '<br>';
   }
 
-  abstract public function curriculum ( string $lezione );
 
 }

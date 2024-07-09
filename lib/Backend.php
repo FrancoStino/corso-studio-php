@@ -19,9 +19,9 @@ class Backend extends Corso
     // echo "Costruttore della classe " . __CLASS__ . " invocato<br>";              
   }
 
-  public function curriculum ( string $lezione ) {
-    echo "Metodo " . __METHOD__ . " invocato di " . __CLASS__ . "<br>";
-  }
+  // public function curriculum ( string $lezione ) {
+  //   echo "Metodo " . __METHOD__ . " invocato di " . __CLASS__ . "<br>";
+  // }
 
   public function riepilogo () {
     $riepilogo = parent::riepilogo();

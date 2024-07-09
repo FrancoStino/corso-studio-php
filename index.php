@@ -6,7 +6,10 @@
  * Stampa dei dati dei due oggetti.
  */
 declare(strict_types=1);
+require_once 'lib/UdemyCourse.php';
+require_once 'lib/GianlucaCourse.php';
 require_once 'lib/Corso.php';
 require_once 'lib/Frontend.php';
 require_once 'lib/Backend.php';
+
 

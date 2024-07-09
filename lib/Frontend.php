@@ -19,9 +19,9 @@ class Frontend extends Corso
     $this->frontendConfig1 = $conf1;
   }
 
-  public function curriculum ( string $lezione ) {
-    echo "Metodo " . __METHOD__ . " invocato di " . __CLASS__ . "<br>";
-  }
+  // public function curriculum ( string $lezione ) {
+  //   echo "Metodo " . __METHOD__ . " invocato di " . __CLASS__ . "<br>";
+  // }
 
   public function riepilogo () {
     $riepilogo = parent::riepilogo();
