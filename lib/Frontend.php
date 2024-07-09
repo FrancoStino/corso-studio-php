@@ -4,7 +4,7 @@
  * La classe Frontend estende la classe Corso.
  * Rappresenta un corso di formazione frontend.
  */
-class Frontend extends Corso
+abstract class Frontend extends Corso
 {
   public               $frontendConfig1;
   public static string $piattaforma     = "Piattaforma Y di Frontend";
@@ -31,4 +31,6 @@ class Frontend extends Corso
   public function moduleBundlerConfig () {
     echo "metodo " . __METHOD__ . " invocato<br>";
   }
+
+  abstract public function astrazionePerFiglioFrontend ();
 }
