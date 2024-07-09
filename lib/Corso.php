@@ -5,7 +5,11 @@
  */
 class Corso
 {
+  public static string $piattaforma = "Piattaforma X";
 
+  public static function info () {
+    echo "La piattaforma di corsi è: " . self::$piattaforma . '<br>';
+  }
   /**
    * Costruttore della classe Corso.
    *
