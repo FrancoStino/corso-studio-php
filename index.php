@@ -11,5 +11,4 @@ require_once 'lib/Frontend.php';
 require_once 'lib/Backend.php';
 
 
-Corso::info();
-echo Corso::$piattaforma. '<br>';
+
