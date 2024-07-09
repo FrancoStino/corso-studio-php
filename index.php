@@ -12,4 +12,4 @@ require_once 'lib/Backend.php';
 
 echo Corso::$piattaforma . '<br>';
 echo Corso::class . '<br>';
-echo Corso::info() . '<br>';
+echo Frontend::info() . '<br>';

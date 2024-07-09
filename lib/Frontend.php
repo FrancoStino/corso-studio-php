@@ -7,6 +7,10 @@
 class Frontend extends Corso
 {
   public $frontendConfig1;
+  public static string $piattaforma     = "Piattaforma Y di Frontend";
+
+
+  
   /**
    * Constructs a new Frontend instance.
    *
