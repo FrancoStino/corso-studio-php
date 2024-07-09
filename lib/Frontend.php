@@ -6,7 +6,7 @@
  */
 class Frontend extends Corso
 {
-  public $frontendConfig1;
+  public               $frontendConfig1;
   public static string $piattaforma     = "Piattaforma Y di Frontend";
 
   /**

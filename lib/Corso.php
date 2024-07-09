@@ -21,6 +21,7 @@ abstract class Corso
    * @param string $categoria Categoria del corso, default "Senza Categoria".
    * @param int|float $prezzo Prezzo del corso, default 0.
    */
+  
   public function __construct (
     public string $titolo,
     public string $autore = "Gianluca",
