@@ -3,7 +3,7 @@
 /**
  * La classe Corso rappresenta un corso di formazione.
  */
-final class Corso
+abstract class Corso
 {
   public static string $piattaforma = "Piattaforma X";
   public const LIVELLO_BASE = 1;
@@ -35,7 +35,7 @@ final class Corso
    *
    * @return string Riepilogo del corso.
    */
-  final protected function riepilogo () {
+  protected function riepilogo () {
     return
       "Titolo: " . $this->titolo . '<br>' .
       "Autore: " . $this->autore . '<br>' .
@@ -43,5 +43,6 @@ final class Corso
       "Prezzo: " . $this->prezzo . '<br>';
   }
 
+  abstract public function curriculum ( string $lezione );
 
 }
