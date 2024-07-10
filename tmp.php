@@ -2,34 +2,20 @@
 
 trait Trait1
 {
-  public function fn1 () {
-    echo "Metodo " . __METHOD__ . " invocato<br>";
-
-  }
+  public $p1;
 }
-
-trait Trait2
-{
-  public function fn1 () {
-    echo "Metodo " . __METHOD__ . " invocato<br>";
-
-  }
-}
-
 
 class A
 {
-  use Trait1,  Trait2 {
-    Trait2::fn1 insteadof Trait1;
-    Trait1::fn1 as fn1_a;
-  }
-  public function a () {
-    echo "Metodo " . __METHOD__ . " invocato<br>";
+  use Trait1;
+  public function fn1 ($p1) {
+    $this->p1 = $p1;
   }
 }
 
+
 $a = new A();
-$a->fn1();
-$a->fn1_a();
 
+$a->fn1(10);
 
+echo $a->p1;
