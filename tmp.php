@@ -3,6 +3,7 @@
 trait Trait1
 {
   public $p1;
+  abstract public function fn1 ($p1);
 }
 
 class A
@@ -16,6 +17,6 @@ class A
 
 $a = new A();
 
-$a->fn1(10);
+$a->fn1(10); 
 
 echo $a->p1;
