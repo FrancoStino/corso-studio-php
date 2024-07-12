@@ -1,22 +1,23 @@
 <?php
 
-trait Trait1
-{
-  public $p1;
-  abstract public function fn1 ($p1);
-}
-
 class A
 {
-  use Trait1;
-  public function fn1 ($p1) {
-    $this->p1 = $p1;
+  public $p1 = "p1";
+
+  public function fna () {
+
+    echo __METHOD__ . "<br>";
   }
 }
 
+class B extends A
+{
 
-$a = new A();
+  public function fnb () {
+    echo parent::$p1;
+    parent::fna();
+  }
+}
+// Esegui fna
 
-$a->fn1(10); 
-
-echo $a->p1;
+(new B)->fnb();
