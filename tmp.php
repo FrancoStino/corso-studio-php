@@ -1,49 +1,155 @@
 <?php
 
 /**
- * Classe A
+ * Classe User1:
  *
- * Classe che definisce un costruttore privato e un metodo di istanza statico per
- * la creazione di un'istanza della classe stessa o di una sua sottoclasse.
+ * Rappresenta un utente con un id random e un nome.
+ *
+ * @property int $id             Id utente.
+ * @property string $name         Nome utente.
+ * @method void __construct(string $name) Costruttore della classe.
  */
-class A
+class User1
 {
-  /**
-   * Costruttore privato
-   *
-   * Costruttore che viene invocato quando viene creato un'istanza della classe.
-   * Poiché è privato, non può essere chiamato direttamente dall'esterno della classe.
-   */
-  private function __construct () {
-    echo "Costruttore di A invocato<br>";
-  }
+  protected int $id;
+  public string $name;
 
   /**
-   * Metodo di istanza statico getInstance
+   * Costruttore della classe.
    *
-   * Metodo statico che restituisce un'istanza della classe stessa o di una sua sottoclasse.
-   * Utilizza la parola chiave "static" per accedere al costruttore della classe stessa.
-   *
-   * @return static L'istanza della classe stessa o di una sua sottoclasse.
+   * @param string $name Nome utente.
    */
-  public static function getInstance () {
-    return new static();
+  public function __construct ( string $name ) {
+    $this->id   = rand( 1, 10000 );
+    $this->name = $name;
   }
 }
 
-// Creazione di un'istanza della classe A
-$a = A::getInstance();
+// Creazione di due istanze della classe User1
+$user1       = new User1( "Gianluca" );
+$user2       = clone $user1;
+$user2->name = "Marco";
+
+// Visualizzazione dei dati delle istanze
+echo "<pre>";
+var_dump( $user1, $user2 );
+echo "</pre>";
+
+/* -------------------------------------------------------------------------- */
+echo "<hr>";
 
 /**
- * Classe B
+ * Classe User2:
  *
- * Sottoclasse di A che non definisce nessun metodo o proprietà aggiuntiva.
+ * Rappresenta un utente con un id random e un nome.
+ * Ha un metodo magic __clone() che viene invocato quando viene eseguito l'operatore clone().
+ *
+ * @property int $id             Id utente.
+ * @property string $name         Nome utente.
+ * @method void __construct(string $name) Costruttore della classe.
+ * @method void __clone() Metodo magic invocato quando viene eseguito l'operatore clone().
  */
-class B extends A { }
+class User2
+{
+  protected int $id;
+  public string $name;
 
-// Creazione di un'istanza della sottoclasse B
-$istance = B::getInstance();
+  /**
+   * Costruttore della classe.
+   *
+   * @param string $name Nome utente.
+   */
+  public function __construct ( string $name ) {
+    $this->id   = rand( 1, 10000 );
+    $this->name = $name;
+  }
 
-// Stampa a video l'istanza della sottoclasse B utilizzando la funzione var_dump
-var_dump( $istance );
+  /**
+   * Metodo magic invocato quando viene eseguito l'operatore clone().
+   * Modifica il nome dell'utente con "Copia di " seguito dal nome originale.
+   */
+  public function __clone () {
+    $this->id   = rand( 1, 10000 );
+    $this->name = "Copia di " . $this->name;
+  }
+}
 
+// Creazione di due istanze della classe User2
+$user3 = new User2( "Gianluca" );
+$user4 = clone $user3;
+
+// Visualizzazione dei dati delle istanze
+echo "<pre>";
+var_dump( $user3, $user4 );
+echo "</pre>";
+
+/* -------------------------------------------------------------------------- */
+echo "<hr>";
+
+/**
+ * Classe User3:
+ *
+ * Rappresenta un utente con un id random, un nome e un oggetto Skills.
+ * Ha un metodo magic __clone() che viene invocato quando viene eseguito l'operatore clone().
+ *
+ * @property int $id             Id utente.
+ * @property string $name         Nome utente.
+ * @property Skills $skillsInstance Oggetto Skills.
+ * @method void __construct(string $name, array $competenze) Costruttore della classe.
+ * @method void __clone() Metodo magic invocato quando viene eseguito l'operatore clone().
+ */
+class User3
+{
+  protected int $id;
+  public string $name;
+  public Skills $skillsInstance;
+
+  /**
+   * Costruttore della classe.
+   *
+   * @param string $name Nome utente.
+   * @param array $competenze Lista di competenze.
+   */
+  public function __construct ( string $name, array $competenze ) {
+    $this->id   = rand( 1, 10000 );
+    $this->name = $name;
+
+    $this->skillsInstance = new Skills( $competenze );
+  }
+
+  /**
+   * Metodo magic invocato quando viene eseguito l'operatore clone().
+   * Modifica il nome dell'utente con "Copia di " seguito dal nome originale.
+   * Crea un nuovo oggetto Skills con una lista di competenze vuota.
+   */
+  public function __clone () {
+    $this->id             = rand( 1, 10000 );
+    $this->name           = "Copia di " . $this->name;
+    $this->skillsInstance = new Skills( [] );
+
+  }
+}
+
+/**
+ * Classe Skills:
+ *
+ * Rappresenta una lista di competenze.
+ *
+ * @property array $competenze Lista di competenze.
+ * @method void __construct(array $competenze) Costruttore della classe.
+ */
+class Skills
+{
+  public function __construct ( public array $competenze ) {}
+}
+
+// Creazione di due istanze della classe User3
+$user5                         = new User3( "Gianluca", [ "HTML", "CSS", "PHP" ] );
+$user6                         = clone $user5;
+$user6->name                   = "Marco";
+$user6->skillsInstance->competenze = [ "HTML", "CSS", "PHP", "JavaScript" ];
+
+// Visualizzazione dei dati delle istanze
+echo "<pre>";
+var_dump( $user5, $user6 );
+echo "</pre>";
