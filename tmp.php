@@ -1,23 +1,29 @@
 <?php
 
 /**
- * Classe User1:
- *
- * Rappresenta un utente con un id random e un nome.
- *
- * @property int $id             Id utente.
- * @property string $name         Nome utente.
- * @method void __construct(string $name) Costruttore della classe.
+ * Esempio di utilizzo del costruttore magico __clone()
  */
+
 class User1
 {
+  /**
+   * Identificativo univoco dell'oggetto
+   *
+   * @var int
+   */
   protected int $id;
+
+  /**
+   * Nome dell'oggetto
+   *
+   * @var string
+   */
   public string $name;
 
   /**
-   * Costruttore della classe.
+   * Costruttore della classe
    *
-   * @param string $name Nome utente.
+   * @param string $name Nome dell'oggetto
    */
   public function __construct ( string $name ) {
     $this->id   = rand( 1, 10000 );
@@ -25,12 +31,12 @@ class User1
   }
 }
 
-// Creazione di due istanze della classe User1
+// Creazione di due oggetti della classe User1
 $user1       = new User1( "Gianluca" );
 $user2       = clone $user1;
 $user2->name = "Marco";
 
-// Visualizzazione dei dati delle istanze
+// Stampa dei dati dei due oggetti
 echo "<pre>";
 var_dump( $user1, $user2 );
 echo "</pre>";
@@ -38,26 +44,27 @@ echo "</pre>";
 /* -------------------------------------------------------------------------- */
 echo "<hr>";
 
-/**
- * Classe User2:
- *
- * Rappresenta un utente con un id random e un nome.
- * Ha un metodo magic __clone() che viene invocato quando viene eseguito l'operatore clone().
- *
- * @property int $id             Id utente.
- * @property string $name         Nome utente.
- * @method void __construct(string $name) Costruttore della classe.
- * @method void __clone() Metodo magic invocato quando viene eseguito l'operatore clone().
- */
+// Medoto magico __clone()
 class User2
 {
+  /**
+   * Identificativo univoco dell'oggetto
+   *
+   * @var int
+   */
   protected int $id;
+
+  /**
+   * Nome dell'oggetto
+   *
+   * @var string
+   */
   public string $name;
 
   /**
-   * Costruttore della classe.
+   * Costruttore della classe
    *
-   * @param string $name Nome utente.
+   * @param string $name Nome dell'oggetto
    */
   public function __construct ( string $name ) {
     $this->id   = rand( 1, 10000 );
@@ -65,8 +72,9 @@ class User2
   }
 
   /**
-   * Metodo magic invocato quando viene eseguito l'operatore clone().
-   * Modifica il nome dell'utente con "Copia di " seguito dal nome originale.
+   * Metodo magico __clone()
+   *
+   * Viene chiamato automaticamente quando si crea una copia dell'oggetto
    */
   public function __clone () {
     $this->id   = rand( 1, 10000 );
@@ -74,11 +82,11 @@ class User2
   }
 }
 
-// Creazione di due istanze della classe User2
+// Creazione di due oggetti della classe User2
 $user3 = new User2( "Gianluca" );
 $user4 = clone $user3;
 
-// Visualizzazione dei dati delle istanze
+// Stampa dei dati dei due oggetti
 echo "<pre>";
 var_dump( $user3, $user4 );
 echo "</pre>";
@@ -86,29 +94,35 @@ echo "</pre>";
 /* -------------------------------------------------------------------------- */
 echo "<hr>";
 
-/**
- * Classe User3:
- *
- * Rappresenta un utente con un id random, un nome e un oggetto Skills.
- * Ha un metodo magic __clone() che viene invocato quando viene eseguito l'operatore clone().
- *
- * @property int $id             Id utente.
- * @property string $name         Nome utente.
- * @property Skills $skillsInstance Oggetto Skills.
- * @method void __construct(string $name, array $competenze) Costruttore della classe.
- * @method void __clone() Metodo magic invocato quando viene eseguito l'operatore clone().
- */
+
 class User3
 {
+  /**
+   * Identificativo univoco dell'oggetto
+   *
+   * @var int
+   */
   protected int $id;
+
+  /**
+   * Nome dell'oggetto
+   *
+   * @var string
+   */
   public string $name;
+
+  /**
+   * Oggetto Skills associato all'oggetto
+   *
+   * @var Skills
+   */
   public Skills $skillsInstance;
 
   /**
-   * Costruttore della classe.
+   * Costruttore della classe
    *
-   * @param string $name Nome utente.
-   * @param array $competenze Lista di competenze.
+   * @param string $name Nome dell'oggetto
+   * @param array $competenze Competenze da associare all'oggetto
    */
   public function __construct ( string $name, array $competenze ) {
     $this->id   = rand( 1, 10000 );
@@ -118,9 +132,9 @@ class User3
   }
 
   /**
-   * Metodo magic invocato quando viene eseguito l'operatore clone().
-   * Modifica il nome dell'utente con "Copia di " seguito dal nome originale.
-   * Crea un nuovo oggetto Skills con una lista di competenze vuota.
+   * Metodo magico __clone()
+   *
+   * Viene chiamato automaticamente quando si crea una copia dell'oggetto
    */
   public function __clone () {
     $this->id             = rand( 1, 10000 );
@@ -130,26 +144,27 @@ class User3
   }
 }
 
-/**
- * Classe Skills:
- *
- * Rappresenta una lista di competenze.
- *
- * @property array $competenze Lista di competenze.
- * @method void __construct(array $competenze) Costruttore della classe.
- */
 class Skills
 {
+  /**
+   * Competenze associate all'oggetto
+   *
+   * @var array
+   */
   public function __construct ( public array $competenze ) {}
 }
 
-// Creazione di due istanze della classe User3
-$user5                         = new User3( "Gianluca", [ "HTML", "CSS", "PHP" ] );
-$user6                         = clone $user5;
-$user6->name                   = "Marco";
+// Creazione di due oggetti della classe User3
+$user5               = new User3( "Gianluca", [ "HTML", "CSS", "PHP" ] );
+$user1Serializzato   = serialize( $user5 );
+$user1Deserializzato = unserialize( $user1Serializzato );
+echo "<pre>";
+var_dump( $user1Serializzato, $user1Deserializzato, $user5 );
+echo "</pre>";
+exit;
+$user6                             = clone $user5;
+$user6->name                       = "Marco";
 $user6->skillsInstance->competenze = [ "HTML", "CSS", "PHP", "JavaScript" ];
-
-// Visualizzazione dei dati delle istanze
 echo "<pre>";
 var_dump( $user5, $user6 );
 echo "</pre>";
