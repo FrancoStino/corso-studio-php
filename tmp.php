@@ -1,43 +1,24 @@
 <?php
+class A {
+  public int $a = 1;
+}
+$obj = new class('Classe Anonima') extends A{
+  public function __construct(public string $nome) {
+    echo "Costruttore della $nome " . __CLASS__ . " invocato<br>";
+  }
+};
+var_dump($obj);
 
-/**
- * Interfaccia UdemyCourse rappresenta un corso di formazione di tipo Udemy.
- * La classe Corso implementa l'interfaccia UdemyCourse.
- */
-interface UdemyCourse
-{
-  /**
-   * Restituisce il curriculum del corso.
-   *
-   * @return void
-   */
-  public function curriculum ();
+
+class Corso {
+public int $p1 = 10;
+  public function riepilogo(){
+    return new class(){
+public function getP1(){
+  
+}
+    };
+  
 }
 
-/**
- * La classe Corso rappresenta un corso di formazione.
- * Estende la classe Corso.
- * Implementa l'interfaccia UdemyCourse.
- */
-class Corso implements UdemyCourse
-{
-  /**
-   * Restituisce il curriculum del corso.
-   *
-   * @return void
-   */
-  public function curriculum () {}
 }
-
-// Creazione di un oggetto della classe Corso.
-$maestroPHP = new Corso();
-
-// Verifica se l'oggetto $maestroPHP è istanza di una classe che implementa l'interfaccia UdemyCourse.
-var_dump( $maestroPHP instanceof UdemyCourse );
-
-// Stampa il nome della classe a cui appartiene l'oggetto $maestroPHP.
-echo get_class( $maestroPHP );
-// Oppure
-// Stampa il nome della classe a cui appartiene l'oggetto $maestroPHP.
-// Utilizza la proprietà statica class per ottenere il nome della classe.
-echo $maestroPHP::class;
