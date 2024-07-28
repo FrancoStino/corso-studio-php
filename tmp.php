@@ -1,79 +1,78 @@
 <?php
 
 /**
- * Esempio di classe anonima e utilizzo dell'estensione.
- *
- * Viene creato un nuovo oggetto della classe anonima che estende la classe A.
- * Vengono definiti i metodi del costruttore e viene creato un nuovo oggetto della classe anonima.
- * Viene chiamato il metodo getP1() sull'oggetto creato.
+ * Questo script mostra l'uso di una classe di utilità FileManager per la lettura di un file.
+ * La classe Test mostra l'uso del distruttore in PHP.
  */
 
-// Classe A
-class A
-{
-    public int $a = 1;
-}
-
-// Creazione di un nuovo oggetto della classe anonima che estende A
-$obj = new class ('Classe Anonima') extends A
+class Test
 {
     /**
-     * Costruttore della classe anonima.
+     * Costruttore della classe Test.
+     * Questo distruttore viene chiamato quando l'oggetto viene eliminato dalla memoria.
      *
-     * @param string $nome Nome della classe.
+     * @return void
      */
-    public function __construct(public string $nome) {
-        echo "Costruttore della $nome ".__CLASS__." invocato<br>";
+    public function __destruct() {
+        echo "Distruttore della classe ".__CLASS__." invocato<br>";
     }
-};
+}
 
-// Visualizzazione dell'oggetto creato
-var_dump($obj);
+// Creazione di un oggetto della classe Test
+$test = new Test();
+echo "Test creato<br>";
 
+// Rilascio dell'oggetto dalla memoria
+unset($test);
+echo "Test distrutto<br>";
+
+/* -------------------------------------------------------------------------- */
+echo '<hr>';
+/* -------------------------------------------------------------------------- */
 
 /**
- * Classe Corso che contiene un metodo riepilogo che restituisce un'istanza di una classe anonima.
- * La classe anonima contiene un metodo getP1() che restituisce il valore di p1 della classe Corso.
+ * Questa classe rappresenta un gestore di file.
  */
-class Corso
+class FileManager
 {
-    /**
-     * Variabile pubblica p1.
-     *
-     * @var int
-     */
-    public int $p1 = 10;
+    private $fh; // file handler
+    private $filename;
 
     /**
-     * Metodo riepilogo che restituisce un'istanza di una classe anonima.
+     * Costruttore della classe FileManager.
+     * Apre il file specificato in modalità specificata.
      *
-     * @return object Istanza di una classe anonima.
+     * @param string $filename Nome del file da aprire
+     * @param string $mode Modalità di apertura del file
      */
-    public function riepilogo() {
-        return new class ($this)
-        {
-            /**
-             * Costruttore della classe anonima.
-             *
-             * @param Corso $corsoInstance Oggetto della classe Corso.
-             */
-            public function __construct(public Corso $corsoInstance) {}
+    public function __construct($filename, $mode) {
+        $this->filename = $filename;
+        $this->fh = fopen($this->filename, $mode);
+    }
 
-            /**
-             * Metodo getP1 che restituisce il valore di p1 della classe Corso.
-             */
-            public function getP1() {
-                echo $this->corsoInstance->p1;
-            }
-        };
+    /**
+     * Legge il contenuto del file e lo restituisce.
+     *
+     * @return void
+     */
+    public function read() {
+        echo fread($this->fh, filesize($this->filename))."<br>";
+    }
+
+    /**
+     * Distruttore della classe FileManager.
+     * Chiude il file aperto e mostra un messaggio di distruzione.
+     *
+     * @return void
+     */
+    public function __destruct() {
+        fclose($this->fh);
+        echo "Distruttore della classe ".__CLASS__." invocato<br>";
     }
 }
 
-// Creazione di un nuovo oggetto della classe Corso
-$corsoPHP = new Corso();
+// Creazione di un oggetto della classe FileManager per il file "text.txt" in modalità lettura
+$testfile = new FileManager("text.txt", "r");
 
-// Creazione di un nuovo oggetto della classe anonima restituita dal metodo riepilogo della classe Corso
-$obj = $corsoPHP->riepilogo();
-
-// Chiamata del metodo getP1() sull'oggetto creato
-$obj->getP1();
+// Lettura del contenuto del file
+$testfile->read();
