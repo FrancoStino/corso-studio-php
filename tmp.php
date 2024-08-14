@@ -1,91 +1,73 @@
 <?php
 
 /**
- * La classe Test rappresenta un esempio di come si può definire un metodo magic __call
- * in PHP.
+ * La classe CreaCorso rappresenta la creazione di un corso.
+ * La creazione di un corso avviene in due step:
+ * 1. step1: verifico se ci sono errori nella creazione del corso
+ * 2. step2: verifico se ci sono errori nella creazione del corso
+ * Se entrambi gli step vanno a buon fine, il corso viene creato correttamente.
+ * Se uno degli step fallisce, il corso viene creato con errori.
  */
-class Test
+class CreaCorso
 {
     /**
-     * La funzione fn1 somma due numeri interi.
+     * Esegue la creazione del corso.
+     * La creazione del corso avviene in due step:
+     * 1. step1: verifico se ci sono errori nella creazione del corso
+     * 2. step2: verifico se ci sono errori nella creazione del corso
+     * Se entrambi gli step vanno a buon fine, il corso viene creato correttamente.
+     * Se uno degli step fallisce, il corso viene creato con errori.
      *
-     * @param int $a Il primo numero.
-     * @param int $b Il secondo numero.
-     * @return void
+     * @return string Il messaggio di esito della creazione del corso.
      */
-    private function fn1(int $a, int $b): void {
-        echo $a + $b;
+    public function crea() {
+        if($this->step1() && $this->step2()) {
+            return "Il Corso è stato creato correttamente";
+        }
+        return "Il Corso è stato creato con errori";
     }
 
     /**
-     * Il metodo __call viene invocato quando viene chiamato un metodo che
-     * non esiste nella classe.
+     * Verifica se ci sono errori nella creazione del corso.
+     * Questo metodo verifica se ci sono errori nella creazione del corso.
      *
-     * @param string $metodo Il nome del metodo chiamato.
-     * @param array $args Gli argomenti passati al metodo.
-     * @return mixed Il valore restituito dal metodo se esiste, altrimenti true.
+     * @return bool True se non ci sono errori, false altrimenti.
      */
-    public function __call(string $metodo, array $args): mixed {
-        return true;
-    }
-}
+    public function step1() { return true; }
 
-// Creazione di un'istanza della classe Test.
-$test = new Test();
-// Chiamata del metodo fn1.
-$test->fn1(1, 2);
-
-
-/* -------------------------------------------------------------------------- */
-echo "<hr>";
-/* -------------------------------------------------------------------------- */
-
-/**
- * La classe EmailService rappresenta un servizio di invio di email.
- */
-class EmailService
-{
     /**
-     * Il metodo sendEmail invia un'email.
+     * Verifica se ci sono errori nella creazione del corso.
+     * Questo metodo verifica se ci sono errori nella creazione del corso.
      *
-     * @return void
+     * @return bool True se non ci sono errori, false altrimenti.
      */
-    public function sendEmail(): void {
-        echo "Email inviata...";
-    }
+    public function step2() { return true; }
+
 }
 
 /**
  * La classe Corso rappresenta un corso di formazione.
+ * La classe Corso ha un metodo statico __callStatic che si occupa di creare un corso.
+ * Il metodo __callStatic viene invocato quando si chiama un metodo statico della classe Corso.
+ * Il metodo __callStatic verifica se il metodo chiamato è creaCorso e se sì, crea un nuovo oggetto CreaCorso e chiama il suo metodo crea.
  */
 class Corso
 {
     /**
-     * Il costruttore accetta un'istanza di EmailService.
+     * Metodo statico che si occupa di creare un corso.
+     * Il metodo __callStatic viene invocato quando si chiama un metodo statico della classe Corso.
+     * Il metodo __callStatic verifica se il metodo chiamato è creaCorso e se sì, crea un nuovo oggetto CreaCorso e chiama il suo metodo crea.
      *
-     * @param EmailService $emailService L'istanza di EmailService.
+     * @param string $method Il nome del metodo statico chiamato.
+     * @param array $args Gli argomenti del metodo statico chiamato.
      */
-    public function __construct(public EmailService $emailService) {}
+    public static function __callStatic($method, $args) {
 
-    /**
-     * Il metodo __call viene invocato quando viene chiamato un metodo che
-     * non esiste nella classe.
-     *
-     * @param string $metodo Il nome del metodo chiamato.
-     * @param array $args Gli argomenti passati al metodo.
-     * @return mixed Il valore restituito dal metodo se esiste, altrimenti true.
-     */
-    public function __call(string $metodo, array $args): mixed {
-        // Controlla se il metodo esiste nell'istanza di EmailService.
-        if(method_exists($this->emailService, $metodo)) {
-            // Chiama il metodo sull'istanza di EmailService.
-            $this->emailService->$metodo();
+        if($method === 'creaCorso') {
+            $creaCorso = new CreaCorso();
+            echo $creaCorso->crea();
         }
-        return true;
     }
 }
 
-// Creazione di un'istanza della classe Corso con un'istanza di EmailService.
-$corso = new Corso(new EmailService());
-// Chiamata del metodo sendEmail.
-$corso->sendEmail();
+Corso::creaCorso(); // Non esistente
