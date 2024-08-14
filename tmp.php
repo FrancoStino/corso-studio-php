@@ -1,62 +1,97 @@
 <?php
 
 /**
- * Questa classe serve a dimostrare il funzionamento dei metodi magici __get e __set.
- * Questi metodi sono attivati quando si cerca di accedere o impostare una proprietà che non esiste 
- * direttamente nella classe.
- * 
- * La proprietà $a è pubblica e quindi può essere acceduta da qualsiasi parte del programma.
- * La proprietà $b è privata e quindi può essere acceduta solo all'interno della classe.
+ * La classe Test rappresenta un esempio di come si può definire un metodo magic __call
+ * in PHP.
  */
 class Test
 {
     /**
-     * Proprietà pubblica.
-     * @var int
-     */
-    public $a = 1;
-
-    /**
-     * Proprietà privata.
-     * @var int
-     */
-    private $b = 2;
-
-    /**
-     * Questo metodo viene attivato quando si cerca di leggere una proprietà che non esiste.
-     * @param string $name Nome della proprietà cercata.
+     * La funzione fn1 somma due numeri interi.
+     *
+     * @param int $a Il primo numero.
+     * @param int $b Il secondo numero.
      * @return void
      */
-    public function __get(string $name) {
-        // Verifica se la proprietà esiste nell'oggetto.
-        if(property_exists($this, $name)) {
-            echo "La proprietà esiste e vale: ".$this->$name;
-        }
-        else {
-            echo "La proprietà non esiste";
-        }
+    private function fn1(int $a, int $b): void {
+        echo $a + $b;
     }
 
     /**
-     * Questo metodo viene attivato quando si cerca di impostare una proprietà che non esiste.
-     * @param string $name Nome della proprietà da impostare.
-     * @param mixed $value Valore da assegnare alla proprietà.
-     * @return void
+     * Il metodo __call viene invocato quando viene chiamato un metodo che
+     * non esiste nella classe.
+     *
+     * @param string $metodo Il nome del metodo chiamato.
+     * @param array $args Gli argomenti passati al metodo.
+     * @return mixed Il valore restituito dal metodo se esiste, altrimenti true.
      */
-    public function __set(string $name, $value) {
-        // Verifica se la proprietà esiste nell'oggetto.
-        if(property_exists($this, $name)) {
-            $this->$name = $value;
-            echo "La proprietà esiste e vale: ".$this->$name;
+    public function __call(string $metodo, array $args): mixed {
+        // Controlla se il metodo esiste nella classe EmailService.
+        if(method_exists(EmailService::class, $metodo)) {
+            // Crea un'istanza di EmailService e chiama il metodo.
+            $emailService = new EmailService();
+            $emailService->$metodo();
         }
-        else {
-            echo "La proprietà non esiste";
-        }
+        return true;
     }
 }
 
-$test = new Test;
-$test->b; // La proprietà privata $b non può essere letta da un'altra classe.
-echo "<hr>";
-$test->b = 3; // La proprietà privata $b può essere modificata dall'interno della classe.
+// Creazione di un'istanza della classe Test.
+$test = new Test();
+// Chiamata del metodo fn1.
+$test->fn1(1, 2);
 
+
+/* -------------------------------------------------------------------------- */
+echo "<hr>";
+/* -------------------------------------------------------------------------- */
+
+/**
+ * La classe EmailService rappresenta un servizio di invio di email.
+ */
+class EmailService
+{
+    /**
+     * Il metodo sendEmail invia un'email.
+     *
+     * @return void
+     */
+    public function sendEmail(): void {
+        echo "Email inviata...";
+    }
+}
+
+/**
+ * La classe Corso rappresenta un corso di formazione.
+ */
+class Corso
+{
+    /**
+     * Il costruttore accetta un'istanza di EmailService.
+     *
+     * @param EmailService $emailService L'istanza di EmailService.
+     */
+    public function __construct(public EmailService $emailService) {}
+
+    /**
+     * Il metodo __call viene invocato quando viene chiamato un metodo che
+     * non esiste nella classe.
+     *
+     * @param string $metodo Il nome del metodo chiamato.
+     * @param array $args Gli argomenti passati al metodo.
+     * @return mixed Il valore restituito dal metodo se esiste, altrimenti true.
+     */
+    public function __call(string $metodo, array $args): mixed {
+        // Controlla se il metodo esiste nell'istanza di EmailService.
+        if(method_exists($this->emailService, $metodo)) {
+            // Chiama il metodo sull'istanza di EmailService.
+            $this->emailService->$metodo();
+        }
+        return true;
+    }
+}
+
+// Creazione di un'istanza della classe Corso con un'istanza di EmailService.
+$corso = new Corso(new EmailService);
+// Chiamata del metodo sendEmail.
+$corso->sendEmail();
