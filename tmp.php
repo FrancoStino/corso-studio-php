@@ -86,6 +86,6 @@ class Corso
 }
 
 // Creazione di un'istanza della classe Corso con un'istanza di EmailService.
-$corso = new Corso(new EmailService);
+$corso = new Corso(new EmailService());
 // Chiamata del metodo sendEmail.
 $corso->sendEmail();
