@@ -26,12 +26,6 @@ class Test
      * @return mixed Il valore restituito dal metodo se esiste, altrimenti true.
      */
     public function __call(string $metodo, array $args): mixed {
-        // Controlla se il metodo esiste nella classe EmailService.
-        if(method_exists(EmailService::class, $metodo)) {
-            // Crea un'istanza di EmailService e chiama il metodo.
-            $emailService = new EmailService();
-            $emailService->$metodo();
-        }
         return true;
     }
 }
