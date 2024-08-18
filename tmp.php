@@ -30,7 +30,10 @@ class FileManager
             /**
              * Se l'eccezione viene catturata, stampa il messaggio di errore
              */
-            echo "Eccezione catturata: ".$e->getMessage();
+            echo "Eccezione catturata: " . $e->getMessage() . "<br>";
+            echo "Codice errore: " . $e->getCode() . "<br>";
+            echo "File: " . $e->getFile() . "<br>";
+            echo "Riga errore: " . $e->getLine() . "<br>";
             echo "<pre>";
             /**
              * Stampa anche il contenuto dell'eccezione
