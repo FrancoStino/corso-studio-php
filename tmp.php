@@ -1,69 +1,31 @@
 <?php
 
 /**
- * Classe FileManager
- * 
- * Gestisce la lettura e la scrittura di file
- * 
- * La classe FileManager ha un costruttore che accetta il nome del file da gestire
- * Il costruttore esegue il metodo checkFileExists() che verifica se il file esiste
- * Se il file non esiste, lancia un'eccezione
- * 
- * Il metodo checkFileExists() restituisce un booleano che indica se il file esiste o no
+ * Esempio di utilizzo delle istruzioni try, catch e finally
+ * per gestire le eccezioni in PHP.
  */
-class FileManager
-{
 
+try {
     /**
-     * Costruttore della classe FileManager
-     * 
-     * @param string $fileName Il nome del file da gestire
+     * Il blocco try viene eseguito per prima cosa.
+     * Se viene lanciata un'eccezione, il blocco catch verrà eseguito.
+     * Se non viene lanciata alcuna eccezione, il blocco finally verrà eseguito.
      */
-    public function __construct(private string $fileName) {
-
-        /**
-         * Verifica se il file esiste
-         * 
-         * Se il file non esiste, lancia un'eccezione
-         */
-        try {
-            $this->checkFileExists();
-        } catch (Exception $e) {
-            var_dump($e->getTrace());
-            echo "Messaggio:" . $e->getMessage();
-        }
-    }
-
+    echo "Apertura file<br>";
+    // Lancia un'eccezione
+    throw new Exception("Eccezione");
+} catch (Exception $e) {
     /**
-     * Verifica se il file esiste
-     * 
-     * @return bool true se il file esiste, false altrimenti
-     * @throws Exception Se il file non esiste
+     * Il blocco catch viene eseguito solo se viene lanciata un'eccezione
+     * nel blocco try.
+     * La variabile $e contiene l'oggetto Exception che rappresenta l'eccezione.
      */
-    private function checkFileExists(): bool {
-
-        /**
-         * Verifica se il file esiste
-         */
-        if(!file_exists($this->fileName)) {
-            /**
-             * Se il file non esiste, lancia un'eccezione
-             */
-            throw new Exception(message: "File non trovato");
-        }
-
-        /**
-         * Se il file esiste, restituisce true
-         */
-        return true;
-
-    }
-
+    echo "Eccezione: " . $e->getMessage() . "<br>";
 }
-
-/**
- * Creazione di un oggetto FileManager
- * 
- * Viene creato un oggetto FileManager con il nome del file "error_log.txt"
- */
-$errorLogManager = new FileManager("error.log");
+finally {
+    /**
+     * Il blocco finally viene eseguito comunque, sia che venga lanciata
+     * un'eccezione o meno.
+     */
+    echo "Chiusura file<br>";
+}
