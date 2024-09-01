@@ -1,61 +1,48 @@
 <?php
 
 /**
+ * Esempio di gestione delle eccezioni in PHP.
+ *
+ * In questo esempio, viene lanciata un'eccezione di tipo OtherType2Exception.
+ * La gestione dell'eccezione viene effettuata mediante un blocco try-catch.
+ * All'interno del blocco catch, viene verificato se l'eccezione è di tipo
+ * OtherTypeException o OtherType2Exception. In base al tipo di eccezione,
+ * viene stampato un messaggio diverso.
+ */
+
+/**
  * Eccezione lanciata quando il valore di un input si trova fuori dal range specificato.
  */
-class InputRangeException extends Exception
-{
-    /**
-     * Valore minimo del range
-     *
-     * @var int
-     */
-    private int $min;
+class InputRangeException extends Exception { }
 
-    /**
-     * Valore massimo del range
-     *
-     * @var int
-     */
-    private int $max;
+/**
+ * Eccezione di tipo generico OtherTypeException.
+ */
+class OtherTypeException extends Exception { }
 
-    /**
-     * Costruttore dell'eccezione
-     *
-     * @param int $min Valore minimo del range
-     * @param int $max Valore massimo del range
-     */
-    public function __construct( int $min = 0, int $max = 100 )
-    {
-        parent::__construct();
-        $this->min = $min;
-        $this->max = $max;
-    }
-
-    /**
-     * Restituisce il messaggio di errore dell'eccezione
-     *
-     * @return string Messaggio di errore
-     */
-    public function getErrorMessage() : string
-    {
-        return <<<MSG
-        {$this->getMessage()} <br>
-        Il valore deve essere compreso tra {$this->min} e {$this->max}.
-        MSG;
-    }
-}
+/**
+ * Eccezione di tipo OtherType2Exception.
+ */
+class OtherType2Exception extends Exception { }
 
 try
 {
-    // Recupero valore del form
-    $valore = 18;
-    // Lancialo un'eccezione se il valore non è compreso tra 1 e 10
-    throw new InputRangeException( 1, 10 );
+    throw new OtherType2Exception();
 }
 catch ( InputRangeException $e )
 {
-    // Stampa il messaggio di errore dell'eccezione
-    echo $e->getErrorMessage();
+    echo "Eccezione di InputRangeException";
+}
+catch ( Exception $e )
+{
+    if ( $e instanceof OtherTypeException )
+    {
+        echo "Eccezione di OtherTypeException";
+    }
+    else
+    {
+        echo "Eccezione di OtherType2Exception";
+    }
+    // echo "Eccezione generica Exception";
 }
 
