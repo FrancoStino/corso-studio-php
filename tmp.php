@@ -1,31 +1,61 @@
 <?php
 
 /**
- * Esempio di utilizzo delle istruzioni try, catch e finally
- * per gestire le eccezioni in PHP.
+ * Eccezione lanciata quando il valore di un input si trova fuori dal range specificato.
  */
+class InputRangeException extends Exception
+{
+    /**
+     * Valore minimo del range
+     *
+     * @var int
+     */
+    private int $min;
 
-try {
     /**
-     * Il blocco try viene eseguito per prima cosa.
-     * Se viene lanciata un'eccezione, il blocco catch verrà eseguito.
-     * Se non viene lanciata alcuna eccezione, il blocco finally verrà eseguito.
+     * Valore massimo del range
+     *
+     * @var int
      */
-    echo "Apertura file<br>";
-    // Lancia un'eccezione
-    throw new Exception("Eccezione");
-} catch (Exception $e) {
+    private int $max;
+
     /**
-     * Il blocco catch viene eseguito solo se viene lanciata un'eccezione
-     * nel blocco try.
-     * La variabile $e contiene l'oggetto Exception che rappresenta l'eccezione.
+     * Costruttore dell'eccezione
+     *
+     * @param int $min Valore minimo del range
+     * @param int $max Valore massimo del range
      */
-    echo "Eccezione: " . $e->getMessage() . "<br>";
+    public function __construct( int $min = 0, int $max = 100 )
+    {
+        parent::__construct();
+        $this->min = $min;
+        $this->max = $max;
+    }
+
+    /**
+     * Restituisce il messaggio di errore dell'eccezione
+     *
+     * @return string Messaggio di errore
+     */
+    public function getErrorMessage() : string
+    {
+        return <<<MSG
+        {$this->getMessage()} <br>
+        Il valore deve essere compreso tra {$this->min} e {$this->max}.
+        MSG;
+    }
 }
-finally {
-    /**
-     * Il blocco finally viene eseguito comunque, sia che venga lanciata
-     * un'eccezione o meno.
-     */
-    echo "Chiusura file<br>";
+
+try
+{
+    // Recupero valore del form
+    $valore = 18;
+    // Lancialo un'eccezione se il valore non è compreso tra 1 e 10
+    throw new InputRangeException( 1, 10 );
 }
+catch ( InputRangeException $e )
+{
+    // Stampa il messaggio di errore dell'eccezione
+    echo $e->getErrorMessage();
+}
+
