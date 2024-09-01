@@ -1,16 +1,6 @@
 <?php
 
 /**
- * Esempio di gestione delle eccezioni in PHP.
- *
- * In questo esempio, viene lanciata un'eccezione di tipo OtherType2Exception.
- * La gestione dell'eccezione viene effettuata mediante un blocco try-catch.
- * All'interno del blocco catch, viene verificato se l'eccezione è di tipo
- * OtherTypeException o OtherType2Exception. In base al tipo di eccezione,
- * viene stampato un messaggio diverso.
- */
-
-/**
  * Eccezione lanciata quando il valore di un input si trova fuori dal range specificato.
  */
 class InputRangeException extends Exception { }
@@ -25,24 +15,37 @@ class OtherTypeException extends Exception { }
  */
 class OtherType2Exception extends Exception { }
 
+/**
+ * Classe che gestisce le eccezioni globali.
+ * La classe implementa il metodo handle() che viene chiamato quando si verifica un'eccezione.
+ * Il metodo handle() stampa un messaggio che indica che l'eccezione è stata gestita da questa classe.
+ */
+class GlobalExceptionHandler
+{
+    /**
+     * Handle an exception.
+     *
+     * @param Exception $e The exception to handle.
+     */
+    public function handle( Exception $e )
+    {
+        echo "Eccezione gestita da " . __METHOD__ . "<br>";
+    }
+}
+
+// Imposta la classe GlobalExceptionHandler come gestore delle eccezioni globali.
+set_exception_handler( [ new GlobalExceptionHandler(), 'handle' ] );
+
 try
 {
+    // Lancia un'eccezione di tipo OtherType2Exception.
     throw new OtherType2Exception();
 }
 catch ( InputRangeException $e )
 {
-    echo "Eccezione di InputRangeException";
-}
-catch ( Exception $e )
-{
-    if ( $e instanceof OtherTypeException )
-    {
-        echo "Eccezione di OtherTypeException";
-    }
-    else
-    {
-        echo "Eccezione di OtherType2Exception";
-    }
-    // echo "Eccezione generica Exception";
+    // Stampa un messaggio se l'eccezione è di tipo InputRangeException.
+    echo "Eccezione di InputRangeException ";
 }
 
+// Stampa un messaggio se non ci sono state eccezioni.
+echo 1;
