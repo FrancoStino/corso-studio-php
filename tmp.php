@@ -1,51 +1,52 @@
 <?php
 
-/**
- * Eccezione lanciata quando il valore di un input si trova fuori dal range specificato.
+/*
+ * Esempio di gestione delle eccezioni.
+ *
+ * L'eccezione viene lanciata con l'istruzione "throw" e viene catturata con
+ * l'istruzione "catch".
+ *
+ * La classe Throwable rappresenta l'oggetto base per tutte le eccezioni.
+ * La classe Exception rappresenta un'eccezione generica.
+ * La classe DivisionByZeroError rappresenta un'eccezione specifica per divisione per zero.
  */
-class InputRangeException extends Exception { }
 
-/**
- * Eccezione di tipo generico OtherTypeException.
- */
-class OtherTypeException extends Exception { }
-
-/**
- * Eccezione di tipo OtherType2Exception.
- */
-class OtherType2Exception extends Exception { }
-
-/**
- * Classe che gestisce le eccezioni globali.
- * La classe implementa il metodo handle() che viene chiamato quando si verifica un'eccezione.
- * Il metodo handle() stampa un messaggio che indica che l'eccezione è stata gestita da questa classe.
- */
-class GlobalExceptionHandler
-{
-    /**
-     * Handle an exception.
-     *
-     * @param Exception $e The exception to handle.
-     */
-    public function handle( Exception $e )
-    {
-        echo "Eccezione gestita da " . __METHOD__ . "<br>";
-    }
-}
-
-// Imposta la classe GlobalExceptionHandler come gestore delle eccezioni globali.
-set_exception_handler( [ new GlobalExceptionHandler(), 'handle' ] );
-
+// Esempio di gestione di un'eccezione generica
 try
 {
-    // Lancia un'eccezione di tipo OtherType2Exception.
-    throw new OtherType2Exception();
+    // Lancia un'eccezione
+    throw new Exception( "Eccezione..." );
+
 }
-catch ( InputRangeException $e )
+catch ( Throwable $e )
 {
-    // Stampa un messaggio se l'eccezione è di tipo InputRangeException.
-    echo "Eccezione di InputRangeException ";
+    // Cattura l'eccezione e stampa un messaggio
+    echo "Problema gestito: " . $e->getMessage() . "<br>";
 }
 
-// Stampa un messaggio se non ci sono state eccezioni.
-echo 1;
+/* -------------------------------------------------------------------------- */
+
+// Esempio di gestione di un'eccezione specifica
+try
+{
+    // Lancia un'eccezione specifica
+    $risultato = 2 / 0;
+}
+catch ( Throwable $e )
+{
+    // Cattura l'eccezione e stampa un messaggio
+    echo "Problema gestito: " . $e->getMessage() . "<br>";
+}
+
+/* -------------------------------------------------------------------------- */
+try
+{
+    // Lancia un'eccezione specifica
+    $risultato = 2 / 0;
+}
+catch ( DivisionByZeroError $e )
+{
+    // Cattura l'eccezione e stampa un messaggio
+    echo "Problema gestito: " . $e->getMessage();
+}
+
