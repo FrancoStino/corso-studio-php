@@ -1,7 +1,7 @@
 <?php
 
 $fields = [ 
-    'name' => [ 
+    'name'  => [ 
         'attribute' => [ 
             'type'        => 'text',
             'value'       => '',
@@ -12,21 +12,23 @@ $fields = [
             'required' => true,
             'min'      => 2,
         ],
-        'email'     => [ 
-            'attribute' => [ 
-                'type'        => 'email',
-                'value'       => '',
-                'placeholder' => 'Email *',
-                'name'        => 'email',
-            ],
-            'rules'     => [ 
-                'required' => true,
-                'email'    => true,
-            ],
+    ]
+    ,
+    'email' => [ 
+        'attribute' => [ 
+            'type'        => 'email',
+            'value'       => '',
+            'placeholder' => 'Email *',
+            'name'        => 'email',
+        ],
+        'rules'     => [ 
+            'required' => true,
+            'email'    => true,
         ],
     ],
-
 ];
+
+
 return [ 
     'formAttribute' => [ 
         'name'    => 'register',

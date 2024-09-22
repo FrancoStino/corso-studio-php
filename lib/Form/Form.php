@@ -42,6 +42,7 @@ class Form
     public function render() : string
     {
         // Costruzione form con la classe FormBuilder
-        return $this->builder->build( $this->formAttribute, $this->fields );
+        $form = $this->builder->build( $this->formAttribute, $this->fields );
+        return str_replace( '%result%', $this->statusMsg, $form );
     }
 }
