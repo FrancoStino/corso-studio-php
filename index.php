@@ -28,7 +28,7 @@ require __DIR__ . '/lib/Form/FormChecker.php';
         <![endif]-->
 
         <?php
-        ( new Form( __DIR__ . '/config/reg.php' ) )->render();
+        echo ( new Form( __DIR__ . '/config/reg.php' ) )->render();
 
 
         ?>

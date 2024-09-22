@@ -28,11 +28,11 @@ $fields = [
 
 ];
 return [ 
-    'formAtrributes' => [ 
+    'formAttribute' => [ 
         'name'    => 'register',
         'action ' => 'index.php',
         'method'  => 'post',
     ],
-    'fields'         => $fields,
-    'status'         => false,
+    'fields'        => $fields,
+    'status'        => false,
 ];

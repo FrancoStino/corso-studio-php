@@ -8,8 +8,8 @@ class Form
 
     public function __construct(
         protected string $formConfig,
-        protected FormBuilder $formBuilder = new FormBuilder(),
-        protected FormChecker $formChecker = new FormChecker(),
+        protected FormBuilder $builder = new FormBuilder(),
+        protected FormChecker $checker = new FormChecker(),
     ) {
         $this->init()->checkSubmit();
     }
@@ -17,9 +17,10 @@ class Form
 
     private function init() : Form
     {
-        $config = require $this->formConfig;
-        var_dump( $config );
-        exit;
+        extract( require $this->formConfig );
+        $this->formAttribute = $formAttribute;
+        $this->fields        = $fields;
+
         return $this;
     }
 
@@ -38,9 +39,9 @@ class Form
 
     }
 
-    public function render()
+    public function render() : string
     {
         // Costruzione form con la classe FormBuilder
-        return "Devo renderizzare il form con questa configurazione: " . $this->formConfig;
+        return $this->builder->build( $this->formAttribute, $this->fields );
     }
 }
