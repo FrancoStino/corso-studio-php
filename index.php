@@ -1,6 +1,9 @@
 <?php
 declare(strict_types=1);
 session_start();
+require __DIR__ . '/lib/Form/Form.php';
+require __DIR__ . '/lib/Form/FormBuilder.php';
+require __DIR__ . '/lib/Form/FormChecker.php';
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +27,12 @@ session_start();
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <script src="" async defer></script>
+        <?php
+        echo ( new Form( __DIR__ . '/config/reg.php' ) )->render();
+
+
+        ?>
+
     </body>
 
 
