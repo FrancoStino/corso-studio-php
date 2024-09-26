@@ -36,7 +36,14 @@ class Form
     private function handleSubmit() : void
     {
         // Valida i campi con la classe FormChecker
-
+        if ( $this->checker->validate( $this->fields ) )
+        {
+            $this->statusMsg = 'Form inviato con successo';
+        }
+        else
+        {
+            $this->statusMsg = 'Errore durante l\'invio del form';
+        }
     }
 
     public function render() : string
