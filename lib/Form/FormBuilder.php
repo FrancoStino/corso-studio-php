@@ -52,7 +52,9 @@ class FormBuilder
 
     protected function inputField( string $fieldName, array $fieldValue ) : string
     {
+        $error = $this->fields[ $fieldName ][ 'error' ] ?? '';
         return <<<input
+        <div>{$error}</div>
         <div><label for="{$fieldName}">{$fieldValue[ 'attribute' ][ 'placeholder' ]}</label></div>
         <div><input type="{$fieldValue[ 'attribute' ][ 'type' ]}" name="{$fieldName}" id="{$fieldName}" value="{$fieldValue[ 'attribute' ][ 'value' ]}"></div>
         input;

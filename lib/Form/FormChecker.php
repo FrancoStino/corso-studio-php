@@ -3,7 +3,7 @@
 class FormChecker
 {
 
-    protected array $errors   = [];
+    // protected array $errors   = [];
     protected array $data     = [];
     protected array $fields;
     protected bool  $validate = true;
@@ -22,9 +22,9 @@ class FormChecker
             {
                 match ( $ruleType )
                 {
-                    'required' => $this->checkRequired( $fieldName, $ruleValue ),
-                    'email'    => $this->checkMail( $fieldName, $ruleValue ),
-                    'min'      => $this->checkMim( $fieldName, $ruleValue ),
+                    'required' => $this->required( $fieldName, $ruleValue ),
+                    'email'    => $this->mail( $fieldName, $ruleValue ),
+                    'min'      => $this->min( $fieldName, $ruleValue ),
                 };
             }
 
@@ -34,19 +34,36 @@ class FormChecker
     }
 
 
-    protected function checkRequired( string $fieldName, mixed $ruleValue )
+    protected function required( string $fieldName, mixed $ruleValue )
     {
-        echo "Il campo {$fieldName} è richiesto? {$ruleValue} <br>";
+
+        if ( empty( $this->data[ $fieldName ] ) )
+        {
+            $this->setError( $fieldName, 'Campo richiesto' );
+            $this->validate = false;
+        }
     }
-    protected function checkMail( string $fieldName, mixed $ruleValue )
+    protected function mail( string $fieldName, mixed $ruleValue )
     {
-        echo "Il campo {$fieldName} è di tipo email? {$ruleValue} <br>";
-
+        if ( !filter_var( $this->data[ $fieldName ], FILTER_VALIDATE_EMAIL ) )
+        {
+            $this->setError( $fieldName, 'Email non valida' );
+            $this->validate = false;
+        }
     }
-    protected function checkMim( string $fieldName, mixed $ruleValue )
+    protected function min( string $fieldName, mixed $ruleValue )
     {
-        echo "Il campo {$fieldName} deve essere compilato con almeno {$ruleValue} caratteri <br>";
 
+        if ( strlen( $this->data[ $fieldName ] ) < $ruleValue )
+        {
+            $this->setError( $fieldName, 'Minimo ' . $ruleValue . ' caratteri' );
+            $this->validate = false;
+        }
     }
 
+    protected function setError( string $fieldName, string $errorMsg )
+    {
+        $this->validate                        = false;
+        $this->fields[ $fieldName ][ 'error' ] = $errorMsg . '<br>';
+    }
 }
