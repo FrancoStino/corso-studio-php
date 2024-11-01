@@ -26,7 +26,7 @@ class FormBuilder
 
         $this->htmlCode .= <<<Form
         %result%
-        <form action="{$action}" method="{$method}" name="{$name}">
+        <form action="{$action}" method="{$method}" name="{$name}" novalidate>
         Form;
         return $this;
     }

@@ -20,6 +20,7 @@ class FormChecker
         {
             foreach ( $fieldInfo[ 'rules' ] as $ruleType => $ruleValue )
             {
+                $this->fields[ $fieldName ][ 'attribute' ][ 'value' ] = $this->data[ $fieldName ];
                 match ( $ruleType )
                 {
                     'required' => $this->required( $fieldName, $ruleValue ),

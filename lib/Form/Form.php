@@ -38,11 +38,20 @@ class Form
         // Valida i campi con la classe FormChecker
         if ( $this->checker->validate( $this->fields ) )
         {
+            $this->cleanFields();
             $this->statusMsg = 'Form inviato con successo';
         }
         else
         {
             $this->statusMsg = 'Errore durante l\'invio del form';
+        }
+    }
+
+    private function cleanFields() : void
+    {
+        foreach ( $this->fields as &$field )
+        {
+            $field[ 'attribute' ][ 'value' ] = '';
         }
     }
 
