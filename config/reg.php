@@ -31,10 +31,10 @@ $fields = [
 
 return [ 
     'formAttribute' => [ 
-        'name'    => 'register',
-        'action ' => 'index.php',
-        'method'  => 'post',
+        'name'             => 'register',
+        'action '          => 'index.php',
+        'method'           => 'post',
+        'submitButtonText' => 'Registrati',
     ],
     'fields'        => $fields,
-    'status'        => false,
 ];

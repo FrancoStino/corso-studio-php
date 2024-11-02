@@ -33,18 +33,11 @@ class FormBuilder
 
     protected function buildFields()
     {
-
         foreach ( $this->fields as $fieldName => $fieldValue )
         {
             $this->htmlCode .= match ( $fieldValue[ 'attribute' ][ 'type' ] )
             {
-
-                'text'     => $this->inputField( $fieldName, $fieldValue ),
-
-                'email'    => $this->inputField( $fieldName, $fieldValue ),
-
-                'password' => $this->inputField( $fieldName, $fieldValue ),
-
+                'text', 'email', 'password' => $this->inputField( $fieldName, $fieldValue ),
             };
         }
         return $this;
@@ -62,8 +55,9 @@ class FormBuilder
 
     protected function endForm()
     {
+        $btnText        = $this->formAttribute[ 'submitButtonText' ];
         $this->htmlCode .= <<<Form
-        <div><input type="submit" value="Invia form"></div>
+        <div><input type="submit" value="{$btnText}"></div>
         </form>
         Form;
         return $this;

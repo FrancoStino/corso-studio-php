@@ -18,9 +18,9 @@ class FormChecker
         $this->fields = &$fields;
         foreach ( $this->fields as $fieldName => $fieldInfo )
         {
+            $this->fields[ $fieldName ][ 'attribute' ][ 'value' ] = $this->data[ $fieldName ];
             foreach ( $fieldInfo[ 'rules' ] as $ruleType => $ruleValue )
             {
-                $this->fields[ $fieldName ][ 'attribute' ][ 'value' ] = $this->data[ $fieldName ];
                 match ( $ruleType )
                 {
                     'required' => $this->required( $fieldName, $ruleValue ),
@@ -28,8 +28,6 @@ class FormChecker
                     'min'      => $this->min( $fieldName, $ruleValue ),
                 };
             }
-
-
         }
         return $this->validate;
     }
